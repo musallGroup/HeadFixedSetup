@@ -1,4 +1,4 @@
-import WeighingSystem
+from WeighingSystem import WeighingSystem
 
 
 # Define the callback function separately
@@ -12,7 +12,7 @@ def handle_message(message):
 
 
 
-port_name = 'COM5'
+port_name = 'COM4'
 baud_rate = 9600
 listener = WeighingSystem(port_name, baud_rate)
 listener.set_callback(handle_message) # make the object self.callback as true
