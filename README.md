@@ -14,8 +14,7 @@ Do we really need this? We have everything in detail in the manual
 # Installation
 add nilus installation guide here
 
-#
-#Software
+# Software
 At the moment the setup  is running with Matlab.... Bpod.....additional packages???
 
 To prepare your experiments start Matlab and enter "bpod" into the console. This will open the Bpod GUI. Now flush the spouts and press the start button after the spouts are flushed (this has to be calibrated occasionally). Now  choose your paradigm and adjust your subject and settings. Now adjust your spouts positions to a proper one and press the "give water" button. Now place your mouse into the setup and head fix it. The lick detection threshold may need to be adjusted. Now toggle the the button in the upper left from pause to run. If your experiment is done press the "stop" button.
