@@ -37,10 +37,12 @@ def listen_to_devices():
         print("Collecting weight data...")
         weight_values = []
         count = 0
+        for i in range(7):
+            line = scale.readline().decode('utf-8').strip()
         while len(weight_values) < 10:
             line = scale.readline().decode('utf-8').strip()
             if line:
-                weight_match = re.search(r'Weight:\s*(\d+\.?\d*)', line)
+                weight_match = re.search(r'\d+,(\d+\.\d+),\w+,\d+\.\d+,', line)
                 if weight_match:
                     weight = float(weight_match.group(1))
                     count += 1
@@ -55,7 +57,7 @@ def listen_to_devices():
         # Write mean weight to a text file
         mean_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\mean_value.txt'
         with open(mean_file_path, 'w') as mean_file:
-            mean_file.write(f"{mean_weight:.2f}")
+            mean_file.write(f"{mean_weight:.4f}")
         print(f"Mean weight written to {mean_file_path}")
 
         # Create flag file to signal MATLAB that mean value is ready
@@ -63,6 +65,12 @@ def listen_to_devices():
         with open(mean_ready_file_path, 'w') as mean_ready_file:
             mean_ready_file.write('Mean ready')
         print(f"Mean ready signal created: {mean_ready_file_path}")
+
+        data_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\data.txt'
+        with open(data_file_path, 'w') as data_file:
+            data_file.write(rfid_data + ",")
+            data_file.write(f"{mean_weight:.4f}")
+        print(f"data written to {data_file_path}")
 
     except serial.SerialException as e:
         print(f"Serial exception: {e}")
