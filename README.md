@@ -13,4 +13,4 @@ To prepare your experiments start Matlab and enter "bpod" into the console. This
 
 # Future
 Stay tuned for new paradigms and new features of the head-fixed setup.
-Currently we are working on automation of data management and mouse detection.
+### Currently we are working on automation of data management and mouse detection.
