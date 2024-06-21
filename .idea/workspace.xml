@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e982d762-966f-4a4b-8d84-b65739128fb0" name="Changes" comment="2. I changed the code so that it listens to the RFID-Reader all the time and not just after the start button is pushed.&#10;&#10;1. Bugs seem to be fixed now&#10;Eventually we need to add a function that deletes all .txt files to troubleshoot an issue that sometimes occurs when the code wasn't completely executed before. (.txt files are not empty then)">
+      <change afterPath="$PROJECT_DIR$/WeighingSystem/WeighingSystem/auto_serial_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeighingSystem/RunWeighingSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeighingSystem/RunWeighingSystem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeighingSystem/WeighingSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeighingSystem/WeighingSystem.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2gmYIm2cGG40OSaRAQWawdADfMS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.RFID_Weight.executor": "Run",
+    "Python.RunWeighingSystem.executor": "Run",
+    "Python.WeighAgain.executor": "Run",
+    "Python.WeighingSystem.executor": "Run",
+    "Python.auto_serial_detection.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.read_5.executor": "Run",
+    "Python.schedule.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/laufs/Desktop/Fatemeh"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e982d762-966f-4a4b-8d84-b65739128fb0" name="Changes" comment="" />
+      <created>1716304142312</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716304142312</updated>
+    </task>
+    <task id="LOCAL-00001" summary="RFID works with this&#10;scale doesn't">
+      <option name="closed" value="true" />
+      <created>1718622785829</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718622785829</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Bugs seem to be fixed now&#10;Eventually we need to add a function that deletes all .txt files to troubleshoot an issue that sometimes occurs when the code wasn't completely executed before. (.txt files are not empty then)">
+      <option name="closed" value="true" />
+      <created>1718796898455</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718796898455</updated>
+    </task>
+    <task id="LOCAL-00003" summary="2. I changed the code so that it listens to the RFID-Reader all the time and not just after the start button is pushed.&#10;&#10;1. Bugs seem to be fixed now&#10;Eventually we need to add a function that deletes all .txt files to troubleshoot an issue that sometimes occurs when the code wasn't completely executed before. (.txt files are not empty then)">
+      <option name="closed" value="true" />
+      <created>1718805849819</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718805849819</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="RFID works with this&#10;scale doesn't" />
+    <MESSAGE value="Bugs seem to be fixed now&#10;Eventually we need to add a function that deletes all .txt files to troubleshoot an issue that sometimes occurs when the code wasn't completely executed before. (.txt files are not empty then)" />
+    <MESSAGE value="2. I changed the code so that it listens to the RFID-Reader all the time and not just after the start button is pushed.&#10;&#10;1. Bugs seem to be fixed now&#10;Eventually we need to add a function that deletes all .txt files to troubleshoot an issue that sometimes occurs when the code wasn't completely executed before. (.txt files are not empty then)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2. I changed the code so that it listens to the RFID-Reader all the time and not just after the start button is pushed.&#10;&#10;1. Bugs seem to be fixed now&#10;Eventually we need to add a function that deletes all .txt files to troubleshoot an issue that sometimes occurs when the code wasn't completely executed before. (.txt files are not empty then)" />
+  </component>
+</project>
