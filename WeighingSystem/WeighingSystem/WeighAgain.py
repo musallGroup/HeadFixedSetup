@@ -12,7 +12,7 @@ def listen_to_devices():
         # Collect ten values from the scale, but only process every second value
         print("Collecting weight data...")
         weight_values = []
-        count = 0
+        #count = 0
         for i in range(7):
             line = scale.readline().decode('utf-8').strip()
         while len(weight_values) < 10:
@@ -21,10 +21,10 @@ def listen_to_devices():
                 weight_match = re.search(r'\d+,(\d+\.\d+),\w+,\d+\.\d+,', line)
                 if weight_match:
                     weight = float(weight_match.group(1))
-                    count += 1
-                    if count % 2 == 0:
-                        weight_values.append(weight)
-                        print(f"Collected weight: {weight}")
+                    #count += 1
+                    #if count % 2 == 0:
+                    weight_values.append(weight)
+                    print(f"Collected weight: {weight}")
 
         # Calculate the mean weight
         mean_weight = sum(weight_values) / len(weight_values)
