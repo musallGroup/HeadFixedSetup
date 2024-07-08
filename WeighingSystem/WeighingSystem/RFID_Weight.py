@@ -19,13 +19,13 @@ def listen_to_rfid():
                 print(f"Received RFID ID: {rfid_data}")
 
                 # Write RFID data to a text file
-                rfid_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\RFID_value.txt'
+                rfid_file_path = r'C:\Users\laufs\Documents\GitHub\AutoPilot\StartButton\RFID_value.txt'
                 with open(rfid_file_path, 'w') as rfid_file:
                     rfid_file.write(rfid_data)
                 print(f"RFID value written to {rfid_file_path}")
 
                 # Create flag file to signal MATLAB that RFID value is ready
-                id_ready_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\ID_ready.txt'
+                id_ready_file_path = r'C:\Users\laufs\Documents\GitHub\AutoPilot\StartButton\ID_ready.txt'
                 with open(id_ready_file_path, 'w') as id_ready_file:
                     id_ready_file.write('ID ready')
                 print(f"ID ready signal created: {id_ready_file_path}")
@@ -64,23 +64,23 @@ def listen_to_scale():
         print(f"Calculated mean weight: {mean_weight}")
 
         # Write mean weight to a text file
-        mean_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\mean_value.txt'
+        mean_file_path = r'C:\Users\laufs\Documents\GitHub\AutoPilot\StartButton\mean_value.txt'
         with open(mean_file_path, 'w') as mean_file:
             mean_file.write(f"{mean_weight:.4f}")
         print(f"Mean weight written to {mean_file_path}")
 
         # Create flag file to signal MATLAB that mean value is ready
-        mean_ready_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\mean_ready.txt'
+        mean_ready_file_path = r'C:\Users\laufs\Documents\GitHub\AutoPilot\StartButton\mean_ready.txt'
         with open(mean_ready_file_path, 'w') as mean_ready_file:
             mean_ready_file.write('Mean ready')
         print(f"Mean ready signal created: {mean_ready_file_path}")
 
         # Write combined data to data.txt
-        rfid_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\RFID_value.txt'
+        rfid_file_path = r'C:\Users\laufs\Documents\GitHub\AutoPilot\StartButton\RFID_value.txt'
         with open(rfid_file_path, 'r') as rfid_file:
             rfid_data = rfid_file.read().strip()
 
-        data_file_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\data.txt'
+        data_file_path = r'C:\Users\laufs\Documents\GitHub\AutoPilot\StartButton\data.txt'
         with open(data_file_path, 'w') as data_file:
             data_file.write(rfid_data + ",")
             data_file.write(f"{mean_weight:.4f}")
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
     # Main loop to wait for the start signal for weighing process
     while True:
-        start_signal_path = r'C:\Users\laufs\Desktop\AutoPilot\StartButton\start_signal.txt'
+        start_signal_path = r'C:\Users\laufs\Documents\GitHub\AutoPilot\StartButton\start_signal.txt'
         if os.path.isfile(start_signal_path):
             print("Start signal detected")
             os.remove(start_signal_path)

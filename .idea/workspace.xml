@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e982d762-966f-4a4b-8d84-b65739128fb0" name="Changes" comment="2. I changed the code so that it listens to the RFID-Reader all the time and not just after the start button is pushed.&#10;&#10;1. Bugs seem to be fixed now&#10;Eventually we need to add a function that deletes all .txt files to troubleshoot an issue that sometimes occurs when the code wasn't completely executed before. (.txt files are not empty then)">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bpod/Bpod_Gen2/Functions/Launch manager/LaunchManager.m" beforeDir="false" afterPath="$PROJECT_DIR$/Bpod/Bpod_Gen2/Functions/Launch manager/LaunchManager.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bpod/Bpod_Gen2/Functions/Launch manager/RunProtocol.m" beforeDir="false" afterPath="$PROJECT_DIR$/Bpod/Bpod_Gen2/Functions/Launch manager/RunProtocol.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WeighingSystem/WeighingSystem/RFID_Weight.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeighingSystem/WeighingSystem/RFID_Weight.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WeighingSystem/WeighingSystem/WeighAgain.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeighingSystem/WeighingSystem/WeighAgain.py" afterDir="false" />
     </list>
@@ -47,7 +50,7 @@
     &quot;Python.schedule.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Dennis&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/laufs/Desktop/Fatemeh&quot;
   }
 }</component>
