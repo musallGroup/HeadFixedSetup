@@ -1,0 +1,245 @@
+---v1.8.0---
+-Analog Input Module: Added control of DIO channels as outputs (requires firmware update)
+-Analog Output Module: Revised serial interface to disentangle two parameters (requires firmware update)
+-Added BpodFormatMidroSD.m, an in-situ formatting tool for microSD cards on Bpod modules
+-LaunchManager: A Bpod protcol folder can now contain only folders (bug fix contributed by Austin Pauley @ FSU)
+-LiveOutcomePlot: Fixed a bug where plot would crash on final trial of session if not ended by the user
+-BpodPhoneHome: Disabled returning metadata to Sanworks on rigs that have opted in for sessions started with LaunchManager
+-LoadBpodFirmware: Added support for filtering firmware list by hardware version
+-LoadModules: Added hardware version filter to LoadBpodFirmware link in command window
+-BpodSystemInfo (GUI panel via mangifying glass icon): Fixed display of state machine model for r2.5
+
+---v1.7.9---
+-Code quality: Improved comments, case conventions and line width across the repository. User-facing names were preserved.
+-Firmware: Added binary for firmware v22 on State Machine r2.5
+-Added LiveOutcomePlot, a new class that replaces SideOutcomePlot and TrialTypeOutcomePlot.
+-Example protocols: Updated all protocols to use LiveOutcomePlot.
+-Bpod.m: Added handling of case where a global BpodSystem variable already exists on startup
+-USB Serial port discovery: updated routine to look for and use MATLAB built-ins before resorting to system calls
+-Folder structure: Simplified repository structure with minor reorganization.
+-AddTrialEvents: Added OS and MATLAB version information to the data structure returned by AddTrialEvents.
+
+---v1.7.8---
+-Switched to semantic versioning. Previously Github release tags used semantic, but software displayed version as X.XX
+-Automatic Sound Calibration: Fixed support for Measurement Computing USB1608G
+-Automatic Sound Calibration: Fixed test tone GUI (previously crashed on open)
+-Sound Calibration: Replaced polynomial fits with piecewise interpolation: griddedInterpolant with 'pchip'
+-HiFi Module: Updated firmware to v5. This fixes an issue: setting sampling rate would reset digital attenuation to default.
+-RotaryEncoderModule: Fixed a bug where using readCurrentPosition() during USB streaming could cause a crash
+-Added Bpod test suite with several key state machine performance tests
+-Bpod.m: Improvements to comments and code style.
+-ArCOM: Fixed baud rate crash on Ubuntu 20.04
+-AddTrialEvents: Bpod software version is now included in data Info field.
+-Updated copyright notices
+
+---v1.77---
+-EndBpod: Fixed bug introduced in v1.76 affecting MATLAB r2016a or older that could cause a crash on application close. 
+-Splash Screen: Improved display on MATLAB v8 and older
+-PsychToolboxAudio: fixed performance with Bpod emulator (contributed by github/ogeesan)
+-Moved Python module classes to github.com/sanworks/PyBpod2
+-Updated contributor guidelines
+-Added code of conduct
+
+---v1.76---
+-BControl: Updated patch to work with firmware v23
+-Bonsai: Added example code for direct USB transactions with state machine via its APP port
+-Bonsai: Improved example code setup comments 
+-BpodWavePlayer: Fixed error message format 
+-Console GUI: Fixed display of state machine r2.5 (previously showed 2.0 even if using 2.5)
+-Console GUI: Fixed bug where Console would fail to close after USB disconnect 
+-Console GUI: Updated '?' link to point to new Bpod wiki
+-Console GUI: Fixed 'last event' display (previously did not clear on starting a new session)
+-BpodTrialManager: Fixed last event display update routine (previously lagged by one event)
+-Performance Plot: Fixed a bug in legend
+-RotaryEncoderModule: Added capability to retrieve current position during USB streaming
+-Bpod Emulator: Fixed handling of conditions when attached to global timer run state  
+-Bpod Emulator: Fixed handling of soft codes
+-Launch Manager: Fixed error if protocol folder is empty 
+-Splash Screen: Updated splash screen graphics
+-Fixed a bug where last event display was not cleared on starting a new session
+-Added CONTRIBUTING README text doc with guidance for pull requests
+
+Release 1.76 features code and doc contributions from:
+Mario Prsa @ Univ. of Freibourg
+Pamela Reinagel @ UCSD
+Austin Pauley @ Florida State Univ.
+Hatem Oraby @ Humboldt Univ. Berlin
+
+---v1.75---
+-Added support for valve driver module v2
+-Analog Input: Added updated firmware to fix a bug affecting hardware v2. When logging to microSD at >10kHz, on stopping acquisition the last buffer-full of data was sometimes read from an incorrect memory location.
+
+---v1.74---
+-Reconfigured baud rate arguments for serial interfaces of acquisition modules. Baud rate now matches the actual capacity of the channel. This improves handling of high throughput incoming data with MATLAB's new serialport class.
+-Python: Added class to control Bpod Valve Driver Module
+-Python: Moved module classes to a single folder with arcom and requirements.txt
+-Python: Edited code to improve compliance with PEP8 (not backwards compatible with existing code)
+-BpodWavePlayer: Fixed range verification for setFixedVoltage() function
+-BpodAnalogIn: Added readChannel() function to return the current voltage on an input channel
+
+---v1.73---
+-Added support for Analog Input Module v2
+-BpodAnalogIn: Added support for firmware v5
+-BpodWavePlayer: Added support for firmware v5
+-BpodWavePlayer (4-ch): With firmware v5, multiple waveforms can be triggered from a single state without trigger profile mode using '>' op (requires FSM v2 or newer).
+-BpodWavePlayer: Firmware v5 fixes a bug in loadWaveform() op that could overwrite end of allocated memory
+-BpodWavePlayer: Fixed bug in sanity check for maximum channels that can be triggered simultaneously at current sampling rate
+-Added sanity check to AddState() function to ensure that only one output channel value is given per state
+
+---v1.72---
+-Analog Output: Updated firmware to support hardware v2. Consolidated firmware files for 4ch and 8ch modules.
+-PortArrayModule: Firmware bug fix: previously when using PWM dimming, duplicate poke events sometimes followed the actual event at 100us intervals.
+-LoadBpodFirmware: Added option to pre-select a serial port. FSM port is now pre-selected if launched via command window update link.
+-Added advisory to manually select correct analog output module version (4ch or 8ch) after launching LoadBpodFirmware from command window link
+-Bonsai support: Addex example code to trigger the state machine from Bonsai using an App Softcode (FSM v2 and 2+). Usage notes in readme.
+-Renamed firmware binaries for readability
+-Removed debugging lines from HiFiSound2AFC_TrialManager example protocol
+
+---v1.71---
+-LoadBpodFirmware: Added a warning to the user if a known target device does not match the firmware type selected
+-LoadBpodFirmware: Fixed handling of paths with spaces
+-LoadBpodFirmware: Restored detection of Teensy boards with HalfKay bootloader
+-Firmware: Added binaries for PulsePalModule firmware for Analog Output Module
+-ArCOM: Added option to enable or disable background reads when using IOPort serial interface. Restored default = disabled.
+-Startup: Fixed call to powershell to support Windows 7
+-Added recommended OS update notice for Windows 7 users
+-LiquidCalibration: Fixed error on launching TestSpecificAmount GUI on MATLAB r2014b or newer
+-BpodAnalogIn class: Removed USB read size handling (now handled internally by ArCOM class)
+
+---v1.70---
+-Added support for state machine firmware v23 on all versions of the state machine hardware (note: v22 is still supported)
+-Added support for state machine 2+ and the new Flex I/O channel type
+-Added support for USB serial port auto-discovery on Windows 11 and fixed auto-discovery on Linux
+-Added firmware and hardware version information for FSM and all modules to default data structure
+-Added support for circuit board revision number readout with FSM firmware v23. On revisions after 7/1/2022, an array of grounded pins indicates rev#.
+-Added support for minor firmware version. This will be incremented with all pushes on develop and reset to 0 with major version releases
+-Added support for direct connection of an external app to the state machine via a second USB serial port (FSM 2 or newer, requires Firmware v23)
+-Added a new sync channel scheme with FW v23: a 10Hz square wave runs for the duration of the trial, with logic flips on trial start/end.
+-Added assertModule() method of BpodSystem. Throws an error if the named module is not connected. An optional flag will also error if not USB paired.
+-Added AddFlexIOAnalogData(), an optional function run after the session to combine the Flex I/O analog data file with the main behavior data structure.
+-Added an error on startup if duplicate versions of Bpod_Gen2 exist in the MATLAB path
+-Fixed issue where multiple copies of UI windows could be launched
+-Fixed issue where UI windows could be left open on closing the console
+-Fixed issue where final status of previous session would continue to display in Bpod console on starting a new session
+-Updated BpodErrorSound to avoid use of AudioRead
+-Updated firmware binaries
+-Updated example protocols to use latest syntax
+-Improved error messages for AddState() and Bpod()
+-Limited console GUI refreshes when USB data is backlogged in buffer. Improves handling of high frequency events.
+-Updated EndBpod to automatically close any Bpod GUI windows
+-LoadBpodFirmware: Added pre-configuration to replace UpdateBpodFirmware for routine updates. 
+-LoadBpodFirmware: Added support for multiple firmware versions for each device (e.g. to roll back a firmware update)
+-LoadBpodFirmware: Added support Teensy RawHID devices (i.e. on first load)
+-Audio: Added GenerateSineChord, a convenience function for making audio chords for use with HiFi module and PsychToolboxAudio class
+-Audio: Added GenerateSineSweep, a convenience function for making pure tone sweeps for use with HiFi module + PsychToolboxAudio 
+-Audio: Added SoundCalibration_Manual(), a function to generate audio calibration curves manually using a hand-held dB meter
+-Video: Added PsychToolboxVideoPlayer, a new class to play video on a secondary display. Depricated PsychToolboxVideoServer.
+-Python integration: Added TCPCom.py, a Python class for Python applications to exchange bytes with Bpod's TCPCom class
+-Python integration: Added FindAnaconda(), a convenience function to discover the path to the user's default anaconda installation (Windows PC only)
+-Python integration: Added LaunchAnacondaApp(), a function to launch an Anaconda environment and run a .py file from the MATLAB command line
+-Examples: Added SyncTTL, example code for Teensy 3.2 + Bpod Teensy Shield to record and timestamp TTL signals from multiple sources incl. state machine
+-Examples: Added FlexIOAnalogLight2AFC protocol, a light-guided 2AFC task with concurrent analog acquisition from FSM 2+ Flex I/O channels
+-Examples: /Protocols/Wheel/ now contains an auditory Poisson click 2AFC task using HiFi module for clicks and the rotary encoder for choice responses
+-TrialManager: Fixed unhandled error if using FSM firmware v22 and a state machine description with implicit serial messages on trial 1
+-TrialManager: Now supports implicit multi-byte serial messages, e.g. {'MyModule', ['P' 2 3]} instead of LoadSerialMessages (req. firmware v23)
+-TrialManager: Fixed dead-time warning bug (previously the warning was delayed until the end of the trial)
+-ArCOM: Added support for MATLAB's new serialport() class (r2019b and newer). This is now used by default when available.
+-ArCOM: Added function to flush input buffer
+-ArCOM: Added double sided buffer to process incoming data. Uses 2x memory but is much more efficient if events are high frequency
+-HiFi Module: Fixed bug where amplitude of synthesized sounds at amp = 1 was actually 1/2 full scale (requires latest firmware)
+-HiFi Module: Fixed bug where after a power cycle, sounds could be played after loading but before push(). This would play whatever was on the SD card.
+-HiFi Module: Added function to disable UART serial port scanning during USB data transfer
+-Rotary Encoder Module: Added support for hardware v2
+-Rotary Encoder Module: Added option to readUSBStream() to specify an event code marking the end of the data read on this call.
+-Rotary Encoder Module: Added an optional MATLAB user callback function to run each time new USB position data is discovered (at 100Hz max)
+-Analog Input Module: Updated BpodAnalogIn() class to use ArCOMObject_Bpod. The _Ain version of ArCOM is now depricated.
+-Bpod Emulator: Fixed bug in global timer trigger and cancel. Previously timers above 2 were not triggered and canceled correctly.
+-Bpod Emulator: Fixed bug that caused the hardware info GUI to crash on launch.
+
+---v1.64---
+-Initial release of HiFi Module: MATLAB class, Python class, BControl patch, firmware binaries and example protocols
+-Added LoadBpodFirmware.m, a new "superuser" firmware loading tool. UpdateBpodFirmware should be used for routine updates.
+-Analog Output: Added setFixedOutput to WavePlayer module, to set a fixed voltage on any channel(s).
+-Analog Output: Updated WavePlayer firmware to support setFixedOutput, and to remove dependencies
+-Analog Output: With firmware update, setupSD is no longer necessary before first use
+-Analog Input: Added a datalogging feature to the analog input UI, and an example protocol using it.
+-Analog Input: Added serial op to sync the state machine with the AIM's USB stream via sync bytes (see new example protocol)
+-Updated firmware uploader to support Teensy 4.0 + 4.1 boards (HiFi module, State Machine r2+)
+-Fixed GenerateSineWave accessory function to remove extra sample
+
+---v1.63---
+-Fixed bug introduced in v1.62 - Previously, when the user navigated to a folder of protocols, the protocol path did not correctly update if the first protocol in the new folder was selected. This would result in data being saved into the folder for the previous protocol selected, with an the previously selected protocol in the file name.
+
+---v1.62---
+-Fixed crash issue with small (128-1024 sample) acquisition sessions in Analog Input firmware (requires firmware update)
+-Fixed issue with loop mode in WavePlayer firmware (requires firmware update)
+-Fixed rendering issues with TrialManager and Bpod Console on newer verisons of MATLAB
+-Fixed issue with default manual override panel's serial terminal handling of byte 255 (Contributed by Florian Rau in Poulet Lab @ MDC Berlin)
+-Added StateTiming plot (Contributed by Florian Rau in Poulet Lab @ MDC Berlin)
+-Fixed issue in Bpod Emulator handling of global counters
+-Fixed issue in Bpod Emulator handling of conditions
+-Fixed issue with Rotary Encoder class - a confirmation byte is received on setting current position
+-Added Farenheit readout to ambient module read function
+-Added support for HiFi Module (beta) with example protocols
+-Added PCLink example code for Teensy Shield (this is one way for the state machine to relay bytes to a separate PC)
+
+---v1.61---
+-Added warning (to command window) when TrialManager detects inter-trial intervals longer than 200 microseconds (e.g. if inter-trial code took longer than 1 trial duration to complete)
+-Fixed bug where LoadSerialMessages() did not accept third argument for message index
+-Updated comments in example protocols, and to include usage of NewStateMachine() instead of deprecated NewStateMatrix()
+-Set default precision of timestamps returned by TrialManager to 0.1ms
+-Added example Python code for Bpod Raspberry Pi Shim. The example runs an 'echo module' as per example Arduino and Teensy firmware. Comments in the example file are important for setup.
+-Added compatability fixes to TeensySoundServer plugin. Please note that TeensySoundServer is deprecated, and new projects should use TeensyAudioPlayer instead (see /Modules/ folder).
+
+---v1.60---
+-Optimized TrialManagerObject handling of rapid event streams
+-Updated support for CCU's HARP sound card
+-Added class for showing single frames on a second monitor using PsychToolbox (interfaced with the state machine using soft codes)
+
+---v1.59---
+-Added UI fixes for MATLAB r2018b and Ubuntu 18
+-Added new PsychToolboxAudio plugin, to improve on PsychToolboxSoundServer with an improved interface. PsychToolboxSoundServer is still supported.
+-Updated PsychToolboxAudio and PsychToolboxSoundServer plugins to support HTOmega FENIX and ASUS Xonar AE sound cards 
+-Updated PsychToolboxAudio and PsychToolboxSoundServer plugins to support WASAPI interface (ASIO is used by default if it is detected)
+-Added implicit programming of serial messages, e.g. in OutputActions, {'MyModule', ['P' 4 2]} is now valid (though not if used with TrialManager)
+-Changed saving option from -v6 to standard (this is actually faster in MATLAB r2018+ and similar in r2013-2018)
+-Added notification and instructions if user has Xonar DX or DSX on Windows without ASIO
+-Added echo module example firmware for Adafruit Metro M4 (for use with Bpod Arduino Shield)
+-Updated GUI font to courier, removed font installation requirement
+-Added preliminary interface to Champalimaud Hardware Platform's HARP sound card (note: this is an alpha release and has known issues)
+-Changed timing precision of rotary encoder module (REM) from ms to us (requires REM firmware update to v5)
+-Added plugin to interface with Pololu Maestro servo controller (can be used to trigger servo motors with soft codes)
+-Added class for Ethernet module to act as a TCP server and relay incoming bytes from clients to state machine (requires Ethernet module firmware swap)
+-Added support for sound calibration with NI USB-6211 and Bruel&Kjaer Nexus Condition amp + microphone (requires Data Acqusition Toolbox)
+
+---v1.58---
+-Added software to keep MATLAB software current: UpdateBpodSoftware(). Currently requires Win7 or Win10 with MATLAB r2014b+
+-Added firmware update app to keep Bpod firmware current: UpdateBpodFirmware(). Currently requires Win7 or Win10.
+-Fixed axes display in TrialTypeOutcomePlot plugin
+-Minor optimization to AddState() function (now uses prepared vectors instead of ones() and zeros() to populate defaults)
+-Removed drawnow() from update method of BpodParameterGUI to reduce inter-trial dead-time on MATLAB versions newer than r2014b
+-Fixed a bug in TrialManager() that would cause crashes when state names varied between trials
+-Disabled PhoneHome transmissions on boot and protocol-start (to resume once Sanworks has a 100% reliable web host)
+
+---v1.57---
+-Fixes to analog input module class (+matching fixes to its firmware repository), fix streaming to scope UI at sampling rates >1kHz
+
+---v1.56---
+-Updated current state machine firmware to v21 (optimizations for state machine r2)
+-Added support for Bpod port array module
+-Updated rotary encoder class with several bug-fixes, support for 8 thresholds and support for capturing + timestamping state machine byte codes
+-Updated BControl patch to improve handling of laggy USB serial buffers on some systems
+
+---v1.55---
+-Fixed SSL handshake bug in PhoneHome program (CRITICAL)
+-Enabled rotary encoder module to log and timestamp bytes from state machine
+-Added 'unipolar' mode to rotary encoder module, for treadmill assays
+-Restored display of automatically changing parameters in BpodParameterGUI
+-Updated serial interface syntax used to relay Bonsai soft codes
+-Updated BControl patch to handle pausing and sound server reset following a MATLAB force-quit
+
+---v1.54---
+-Added Ethernet Module support with PsychToolbox (previously req. Instrument Ctrl Tlbx)
+-Added in-trial pause support to BControl patch
+-In BControl patch, added ability to list channels in any order in settings_custom.conf
+-In BControl patch, added ability to loop sounds on sound server (vs. looping sched. wave)
