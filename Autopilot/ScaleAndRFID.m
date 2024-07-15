@@ -1,117 +1,92 @@
-% Main script to handle RFID reader and scale
-clear; clc;
-% % Initialize variables
+clear;
+clc;
+
+% Initialize variables
 rfidData = '';
-
-
-
+weightData = [];
 
 % Setup serial connections
-%rfidPort = 'COM7';  % Change as necessary
-scalePort = 'COM8';  % Change as necessary
+scalePort = 'COM13';  % Change as necessary
+arduinoPort = 'COM7';  % Change as necessary
 
-%rfidSerial = serialport(rfidPort, 9600);
-%configureTerminator(rfidSerial, "CR/LF");
 scaleSerial = serialport(scalePort, 9600);
-%configureTerminator(scaleSerial, "CR/LF");
-%
 flush(scaleSerial);
-%flush(rfidSerial);
 fopen(scaleSerial);
-%fopen(rfidSerial);
 
-arduino = serialport('COM7', 9600);%, 'Timeout',10);
+arduino = serialport(arduinoPort, 9600);
 flush(arduino);
 fopen(arduino);
 
-%%Bpod
-global BpodSystem;
-
-
-%try
-% Configure the serial connection to the Arduino RFID reader
-% Replace 'COM7' with the correct COM port
-
-% Wait for RFID data
 disp('Listening for RFID data...');
 
 while true
-    data = fscanf(arduino);
-    disp(data);
-    if ~isempty(data)
-        rfid_data = data;
-        fprintf('Received RFID ID: %s\n', rfid_data);
-        BpodSystem.GUIData.rfidData = rfid_data;
-        pause(0.5);
-        meanweight = scaleCallback(scaleSerial);
-        fprintf('Received mean wheight %s\n',meanweight);
-    end
-
-
-end
-%catch e
-%disp(['Serial exception: ', e.message]);
-
-
-
-
-
-
-
-
-
-
-
-
-% % Callback function to handle RFID data
-% while true
-% global BpodSystem;
-%     data = readline(rfidSerial);
-%     if ~isempty(data)
-%         rfidData = data;
-%         disp(['Received RFID ID: ', rfidData]);
-%         scaleCallback(scaleSerial);
-%         BpodSystem.GUIData.rfidData = rfidData;
-%     end
-% end
-
-
-% Callback function to handle scale data
-function meanWeight = scaleCallback(src, ~)
-weightData = [];
-global BpodSystem;
-flag_skip_lines = 0;
-while flag_skip_lines<8
-    data = readline(src);
-    flag_skip_lines = flag_skip_lines+1;
-end
-
-flag_10_reads = 0;
-while flag_10_reads<10
-    data = readline(src);
-    if ~isempty(data)
-        % Extract weight from the data (modify regex as per the data format)
-        weightMatch = regexp(data, '\d+,(\d+\.\d+),\w+,\d+\.\d+,', 'tokens');
-        if ~isempty(weightMatch)
-            weight = str2double(weightMatch{1}{1});
-            weightData = [weightData, weight];
-            disp(['Collected weight: ', num2str(weight)]);
-            flag_10_reads = flag_10_reads+1;
+    try
+        % Wait for RFID data from Arduino
+        bytesAvailable = arduino.NumBytesAvailable;
+        if bytesAvailable > 0
+            data = read(arduino, bytesAvailable, 'char');
+            disp(['Raw Data: ', data]);  % Display raw data for debugging
+            if ~isempty(data)
+                rfid_data = strtrim(data);
+                fprintf('Received RFID ID: %s\n', rfid_data);
+                rfidData = rfid_data;  % Store RFID data in a variable
+                
+                % Call scale function after receiving RFID data
+                scale(scaleSerial);
+            end
         end
+    catch ME
+        % Handle errors
+        warning(['Error: ', ME.message]);
+    end
+    pause(0.1);  % Adjust pause duration for responsiveness
+end
 
-        
-        if length(weightData) == 10
-            % Calculate mean weight
-            meanWeight = mean(weightData);
-            disp(['Calculated mean weight: ', num2str(meanWeight)]);
-            % Update the app's WeightTextArea
-            BpodSystem.GUIData.meanData = meanWeight;
+% Close serial ports
+fclose(scaleSerial);
+fclose(arduino);
 
-            weightData = [];  % Reset weight data
-            flag_10_reads = 0;
-            break
+
+function scale(scaleSerial)
+    global weightData;
+    global BpodSystem;
+    
+    flag_skip_lines = 0;
+    while flag_skip_lines < 8
+        data = readline(scaleSerial);
+        flag_skip_lines = flag_skip_lines + 1;
+    end
+    
+    flag_10_reads = 0;
+    while flag_10_reads < 10
+        data = readline(scaleSerial);
+        if ~isempty(data)
+            % Extract weight from the data using specified regex pattern
+            weightMatch = regexp(data, '\d+,-?\d+\.\d+,kg,\d+\.\d+,', 'match', 'once');
+            if ~isempty(weightMatch)
+                weightParts = strsplit(weightMatch, ',');
+                weight = str2double(weightParts{2});
+                weightData = [weightData, weight];
+                disp(['Collected weight: ', num2str(weight)]);
+                flag_10_reads = flag_10_reads + 1;
+            else
+                disp('No valid weight data found.');
+            end
+            
+            if length(weightData) == 10
+                % Calculate mean weight
+                meanWeight = mean(weightData);
+                disp(['Calculated mean weight: ', num2str(meanWeight)]);
+                
+                % Update the BpodSystem GUI data with mean weight
+                BpodSystem.GUIData.meanData = meanWeight;
+                
+                weightData = [];  % Reset weight data
+                flag_10_reads = 0;
+                break;  % Exit the loop after calculating mean for 10 readings
+            end
+        else
+            disp('Empty data received.');
         end
     end
 end
-end
-
