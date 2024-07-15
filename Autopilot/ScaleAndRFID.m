@@ -32,6 +32,7 @@ while true
                 rfidData = rfid_data;  % Store RFID data in a variable
                 
                 % Call scale function after receiving RFID data
+                BpodSystem.GUIHandles.rfidGUI.WeightTextArea.Value = 'Weighing in progress...';
                 scale(scaleSerial);
             end
         end
@@ -79,7 +80,7 @@ function scale(scaleSerial)
                 disp(['Calculated mean weight: ', num2str(meanWeight)]);
                 
                 % Update the BpodSystem GUI data with mean weight
-                BpodSystem.GUIData.meanData = meanWeight;
+                BpodSystem.GUIHandles.rfidGUI.WeightTextArea.Value = meanWeight;
                 
                 weightData = [];  % Reset weight data
                 flag_10_reads = 0;
