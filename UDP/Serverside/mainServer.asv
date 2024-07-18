@@ -46,12 +46,15 @@ function [paradigm, setting, subjectID] = processDatagram(u, ~)
     IDconverter = readtable(IDconverter_path);
     idx = find(strcmp(IDconverter.ID,ID)); %index
     subjectID = IDconverter.Subject_ID(idx);
-    setting_path = char(subject_directory{1,1});
+    subject_directory = IDconverter.Subject_Directory(idx);
+    setting = subject_directory;
+    
     
     % read the paradigm assigned to this ID
-    filename = [subjectID, '.xlsx'];
-    fullfilePath = fullfile(setting_path, filename);
-    fileInfo = dir(fullfilePath);
+    directory = 'C:\Users\yousefi.BIOLOGIE2\Desktop\Project\HeadFixedSetup\UDPCodes';
+    filename = [ID, '.xlsx'];
+    fullFilePath = fullfile(directory, filename);
+    fileInfo = dir(fullFilePath);
     
     if isempty(fileInfo)
     fprintf('The file %s does not exist in the directory %s.\n', filename, directory);
@@ -59,9 +62,7 @@ function [paradigm, setting, subjectID] = processDatagram(u, ~)
     fprintf('The file %s exists in the directory %s.\n', filename, directory);
 
     % read the paradigm from the excel file
-    data = readtable(fullfilePath); 
-    data.date(length(data.date)+1,:)= {datetime('now', 'Format', 'yyyy-MM-dd')};
-    data.weight(length(data.date)+1,:)= weight;
+    data = readtable(fullFilePath); 
     paradigm = char(data.paradigm);
     % Check if the cell value is a string (name)
     end
