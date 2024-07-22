@@ -10,24 +10,27 @@ configureCallback(u, "datagram", 10,@processDatagram);
 
 
 while true
-        % Check if there are datagrams available to process
-        if u.NumDatagramsAvailable > 0
-            % Process incoming datagrams by triggering the callback function
-            paradigm = processDatagram(u, []);
-            if paradigm
-               write(u,paradigm,"char",remoteIP,remotePort);
-               fprintf("sent...\n");
-               clear paradigm;
-            end
-            pause(1);
+    % Check if there are datagrams available to process
+    if u.NumDatagramsAvailable > 0
+        % Process incoming datagrams by triggering the callback function
+        [paradigm, setting , subjectID] = processDatagram(u, []);
+        if paradigm && setting && subjectID
+            message = sprintf(paradigm, setting, subjectID);
+            write(u,message,"char",remoteIP,remotePort);
+            fprintf("sent...\n");
+            clear paradigm;
+            clear setting_name;
+            clear subjectID;
         end
+        pause(1);
+    end
 end
 
 
 
 % set the callback function
 % Function to process received datagrams
-function [paradigm, setting, subjectID] = processDatagram(u, ~)
+function [paradigm, setting , subjectID] = processDatagram(u, ~)
     paradigm = '';
     data = read(u,15,"uint8");  % Read the received datagram
     fprintf("received...\n");
@@ -62,7 +65,9 @@ function [paradigm, setting, subjectID] = processDatagram(u, ~)
     data = readtable(fullfilePath); 
     data.date(length(data.date)+1,:)= {datetime('now', 'Format', 'yyyy-MM-dd')};
     data.weight(length(data.date)+1,:)= weight;
-    paradigm = char(data.paradigm);
+    
+    setting = char(data.setting(1,1));
+    paradigm = char(data.paradigm(1,1));
     % Check if the cell value is a string (name)
     end
     

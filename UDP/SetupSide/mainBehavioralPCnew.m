@@ -18,8 +18,8 @@ else
     remoteIP =  '134.130.63.141';  remotePort = 5002;  % The IP address of B pc (server PC)
 
     % Send the data via UDP
-    paradigm = sendUDP(rfid, weight, remoteIP, remotePort ,localIP ,localPort);
-    fprintf(paradigm);
+    [paradigm, setting , subjectID] = sendUDP(rfid, weight, remoteIP, remotePort ,localIP ,localPort);
+    fprintf('paradigm: %s',paradigm,'setting %s', setting, 'subjectID %s', subjectID);
     fprintf("\nDone...");
 end
 
@@ -45,7 +45,7 @@ function [rfid, weight] = readTextFile(filename)
 end
 
 %% Function to send data via UDP
-function paradigm = sendUDP(rfid, weight, remoteIP, remotePort ,localIP,localPort)
+function [paradigm, setting , subjectID] = sendUDP(rfid, weight, remoteIP, remotePort ,localIP,localPort)
     paradigm = '';
    % set up the udp connection 
     u = udpport("datagram","LocalHost",localIP, "LocalPort", localPort);
@@ -62,7 +62,10 @@ function paradigm = sendUDP(rfid, weight, remoteIP, remotePort ,localIP,localPor
         pause(30);
         fprintf("received...\n");
         receive_bytes = data.Data;  % Convert to 32-bit binary string
-        paradigm = char(receive_bytes);
+        splited=split(receive_bytes,",");
+        paradigm = char(splited{1,1});
+        setting = char(splited{2,1});
+        subjectID = char(splited{3,1});
         
     end
     
