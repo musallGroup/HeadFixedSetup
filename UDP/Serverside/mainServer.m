@@ -1,6 +1,6 @@
 % function to set the UPD connection and listen and send
 % IP configuration
-remoteIP = '134.130.63.116'; remotePort = 5001; % The IP address of A pc (behavioral PC)
+remoteIP = '134.130.63.100'; remotePort = 5001; % The IP address of A pc (behavioral PC)
 localIP =  '134.130.63.141';  localPort = 5002;  % The IP address of B pc (server PC)
     
 % set up the udp connection 
@@ -14,8 +14,8 @@ while true
     if u.NumDatagramsAvailable > 0
         % Process incoming datagrams by triggering the callback function
         [paradigm, setting , subjectID] = processDatagram(u, []);
-        if paradigm && setting && subjectID
-            message = sprintf(paradigm, setting, subjectID);
+        if paradigm
+            message = sprintf('%s,%s,%s', paradigm, setting, num2str(subjectID));
             write(u,message,"char",remoteIP,remotePort);
             fprintf("sent...\n");
             clear paradigm;
@@ -32,6 +32,8 @@ end
 % Function to process received datagrams
 function [paradigm, setting , subjectID] = processDatagram(u, ~)
     paradigm = '';
+    setting ='';
+    subjectID = '';
     data = read(u,15,"uint8");  % Read the received datagram
     fprintf("received...\n");
     receive_bytes = data.Data;  % Convert to 32-bit binary string
@@ -49,27 +51,29 @@ function [paradigm, setting , subjectID] = processDatagram(u, ~)
     IDconverter = readtable(IDconverter_path);
     idx = find(strcmp(IDconverter.ID,ID)); %index
     subjectID = IDconverter.Subject_ID(idx);
-    setting_path = char(subject_directory{1,1});
+    disp(subjectID);
+    %setting_path = char(subject_directory{1,1});
     
     % read the paradigm assigned to this ID
-    filename = [subjectID, '.xlsx'];
+    setting_path = 'C:\Users\yousefi.BIOLOGIE2\Desktop\Project\HeadFixedSetup\UDPCodes';
+    filename = [num2str(subjectID), '.xlsx'];
     fullfilePath = fullfile(setting_path, filename);
     fileInfo = dir(fullfilePath);
     
-    if isempty(fileInfo)
-    fprintf('The file %s does not exist in the directory %s.\n', filename, directory);
-    else
-    fprintf('The file %s exists in the directory %s.\n', filename, directory);
+    %if isempty(fileInfo)
+    %fprintf('The file %s does not exist in the directory %s.\n', filename, fileInfo);
+    %else
+    %fprintf('The file %s exists in the directory %s.\n', filename, fileInfo);
 
     % read the paradigm from the excel file
     data = readtable(fullfilePath); 
     data.date(length(data.date)+1,:)= {datetime('now', 'Format', 'yyyy-MM-dd')};
-    data.weight(length(data.date)+1,:)= weight;
+    data.weight(length(data.date)+1,:)= string(weight);
     
     setting = char(data.setting(1,1));
     paradigm = char(data.paradigm(1,1));
     % Check if the cell value is a string (name)
-    end
+    
     
     % Display the results
     fprintf('%s\n%s\n', ID, weight);

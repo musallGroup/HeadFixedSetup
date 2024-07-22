@@ -1,6 +1,6 @@
 % function to set the UPD connection and listen and send
 % IP configuration
-remoteIP = '134.130.63.116'; remotePort = 5001; % The IP address of A pc (behavioral PC)
+remoteIP = '134.130.63.100'; remotePort = 5001; % The IP address of A pc (behavioral PC)
 localIP =  '134.130.63.141';  localPort = 5002;  % The IP address of B pc (server PC)
     
 % set up the udp connection 
@@ -49,17 +49,19 @@ function [paradigm, setting , subjectID] = processDatagram(u, ~)
     IDconverter = readtable(IDconverter_path);
     idx = find(strcmp(IDconverter.ID,ID)); %index
     subjectID = IDconverter.Subject_ID(idx);
-    setting_path = char(subject_directory{1,1});
+    disp(subjectID);
+    %setting_path = char(subject_directory{1,1});
     
     % read the paradigm assigned to this ID
-    filename = [subjectID, '.xlsx'];
+    setting_path = 'C:\Users\yousefi.BIOLOGIE2\Desktop\Project\HeadFixedSetup\UDPCodes';
+    filename = [num2str(subjectID), '.xlsx'];
     fullfilePath = fullfile(setting_path, filename);
     fileInfo = dir(fullfilePath);
     
-    if isempty(fileInfo)
-    fprintf('The file %s does not exist in the directory %s.\n', filename, directory);
-    else
-    fprintf('The file %s exists in the directory %s.\n', filename, directory);
+    %if isempty(fileInfo)
+    %fprintf('The file %s does not exist in the directory %s.\n', filename, fileInfo);
+    %else
+    %fprintf('The file %s exists in the directory %s.\n', filename, fileInfo);
 
     % read the paradigm from the excel file
     data = readtable(fullfilePath); 
