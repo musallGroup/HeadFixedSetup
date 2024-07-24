@@ -24,7 +24,7 @@ else
 end
 
 %% Function to read the text file
-function [rfid, weight] = readTextFile(filename)
+function [rfid, weight] = readTextFile(filename) %% replace this part in a way that it reads ID and weight from the Autopilot
     % Open the file
     fid = fopen(filename, 'r');
     if fid == -1
@@ -58,10 +58,10 @@ function [paradigm, setting , subjectID] = sendUDP(rfid, weight, remoteIP, remot
     pause(50);
     
     if u.NumDatagramsAvailable > 0
-        data = read(u,15,"uint8");  % Read the received datagram
+        data = read(u,1,"uint8");  % Read the received datagram
         pause(30);
         fprintf("received...\n");
-        receive_bytes = data.Data;  % Convert to 32-bit binary string
+        receive_bytes = char(data.Data);  % Convert to 32-bit binary string
         splited=split(receive_bytes,",");
         paradigm = char(splited{1,1});
         setting = char(splited{2,1});

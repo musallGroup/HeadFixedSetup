@@ -24,7 +24,7 @@ else
 end
 
 %% Function to read the text file
-function [rfid, weight] = readTextFile(filename)
+function [rfid, weight] = readTextFile(filename) %% replace this part in a way that it reads ID and weight from the Autopilot
     % Open the file
     fid = fopen(filename, 'r');
     if fid == -1
