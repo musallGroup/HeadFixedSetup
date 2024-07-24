@@ -1,5 +1,5 @@
 %{
-----------------------------------------------------------------------------
+----------------------------------------------------------------------------launchmanager
 
 This file is part of the Sanworks Bpod repository
 Copyright (C) Sanworks LLC, Rochester, New York, USA
