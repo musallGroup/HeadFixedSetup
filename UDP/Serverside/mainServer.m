@@ -1,6 +1,6 @@
 % function to set the UPD connection and listen and send
 % IP configuration
-remoteIP = '134.130.63.116'; remotePort = 5001; % The IP address of A pc (behavioral PC)
+remoteIP = '134.130.63.100'; remotePort = 5001; % The IP address of A pc (behavioral PC)
 localIP =  '134.130.63.141';  localPort = 5002;  % The IP address of B pc (server PC)
     
 % set up the udp connection 
@@ -10,25 +10,30 @@ configureCallback(u, "datagram", 10,@processDatagram);
 
 
 while true
-        % Check if there are datagrams available to process
-        if u.NumDatagramsAvailable > 0
-            % Process incoming datagrams by triggering the callback function
-            paradigm = processDatagram(u, []);
-            if paradigm
-               write(u,paradigm,"char",remoteIP,remotePort);
-               fprintf("sent...\n");
-               clear paradigm;
-            end
-            pause(1);
+    % Check if there are datagrams available to process
+    if u.NumDatagramsAvailable > 0
+        % Process incoming datagrams by triggering the callback function
+        [paradigm, setting , subjectID] = processDatagram(u, []);
+        if paradigm
+            message = sprintf('%s,%s,%s', paradigm, setting, num2str(subjectID));
+            write(u,message,"char",remoteIP,remotePort);
+            fprintf("sent...\n");
+            clear paradigm;
+            clear setting_name;
+            clear subjectID;
         end
+        pause(1);
+    end
 end
 
 
 
 % set the callback function
 % Function to process received datagrams
-function paradigm = processDatagram(u, ~)
+function [paradigm, setting , subjectID] = processDatagram(u, ~)
     paradigm = '';
+    setting ='';
+    subjectID = '';
     data = read(u,15,"uint8");  % Read the received datagram
     fprintf("received...\n");
     receive_bytes = data.Data;  % Convert to 32-bit binary string
@@ -39,22 +44,36 @@ function paradigm = processDatagram(u, ~)
     ID = splited{1,1};
     weight = splited{2,1};
     
-    % read the paradigm assigned to this ID
-    directory = 'C:\Users\yousefi.BIOLOGIE2\Desktop\Project\HeadFixedSetup\UDPCodes';
-    filename = [ID, '.xlsx'];
-    fullFilePath = fullfile(directory, filename);
-    fileInfo = dir(fullFilePath);
+    % Extract the sibject ID
+    base_path = 'C:\Users\yousefi.BIOLOGIE2\Desktop\Project\HeadFixedSetup\UDPCodes';
+    IDconverter_file = 'IDConvertor.xlsx';
+    IDconverter_path = fullfile(base_path,IDconverter_file);
+    IDconverter = readtable(IDconverter_path);
+    idx = find(strcmp(IDconverter.ID,ID)); %index
+    subjectID = IDconverter.Subject_ID(idx);
+    disp(subjectID);
+    %setting_path = char(subject_directory{1,1});
     
-    if isempty(fileInfo)
-    fprintf('The file %s does not exist in the directory %s.\n', filename, directory);
-    else
-    fprintf('The file %s exists in the directory %s.\n', filename, directory);
+    % read the paradigm assigned to this ID
+    setting_path = 'C:\Users\yousefi.BIOLOGIE2\Desktop\Project\HeadFixedSetup\UDPCodes';
+    filename = [num2str(subjectID), '.xlsx'];
+    fullfilePath = fullfile(setting_path, filename);
+    fileInfo = dir(fullfilePath);
+    
+    %if isempty(fileInfo)
+    %fprintf('The file %s does not exist in the directory %s.\n', filename, fileInfo);
+    %else
+    %fprintf('The file %s exists in the directory %s.\n', filename, fileInfo);
 
     % read the paradigm from the excel file
-    data = readtable(fullFilePath); 
-    paradigm = char(data.paradigm);
+    data = readtable(fullfilePath); 
+    data.date(length(data.date)+1,:)= {datetime('now', 'Format', 'yyyy-MM-dd')};
+    data.weight(length(data.date)+1,:)= string(weight);
+    
+    setting = char(data.setting(1,1));
+    paradigm = char(data.paradigm(1,1));
     % Check if the cell value is a string (name)
-    end
+    
     
     % Display the results
     fprintf('%s\n%s\n', ID, weight);
