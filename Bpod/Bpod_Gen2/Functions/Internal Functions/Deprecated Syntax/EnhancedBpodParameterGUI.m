@@ -1,2 +1,0 @@
-function EnhancedBpodParameterGUI(varargin)
-BpodParameterGUI(varargin)
