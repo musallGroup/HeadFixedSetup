@@ -1,4 +1,12 @@
-function serial_obj = search_for_microcontroller_by_name(name)
+function serial_obj = USBDetection(name)
+    % Check if the 'name' argument is provided
+    if nargin < 1
+        error('The function requires the input argument "name".');
+    end
+
+    % List all available serial ports and display them
+    display_all_ports();
+
     % Get a list of all available serial ports
     ports_found = serialportlist("available");
 
@@ -20,6 +28,21 @@ function serial_obj = search_for_microcontroller_by_name(name)
     end
 
     error([name, ' Microcontroller NOT FOUND!']);
+end
+
+function display_all_ports()
+    % Get a list of all available serial ports
+    ports = serialportlist("available");
+
+    % Display each port name
+    if isempty(ports)
+        disp('No available serial ports found.');
+    else
+        disp('Available serial ports:');
+        for i = 1:length(ports)
+            disp(ports{i});
+        end
+    end
 end
 
 function name = read_module_name(serial_obj)
