@@ -39,7 +39,7 @@ function device_name = read_device_name(serial_obj)
 
     % Send a command to request the device name
     % Adjust this command according to the specific device's protocol
-    write(serial_obj, uint8(255), 'uint8'); % Example command for querying name
+    write(serial_obj, uint8('ID?'), 'ID?'); % Example command for querying name
 
     % Wait and read the device name
     pause(0.2); % Delay to allow device response
