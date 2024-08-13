@@ -8,37 +8,17 @@ if ispc
     
     if ~isempty(tokens)
         localIP = tokens{1}{1};
+         localPort = 5002;  % The IP address of B pc (server PC)
         disp(['Local IP Address: ', localIP]);
-        app.LocalIPTextArea.Value = char(localIP);
     else
         disp('Could not find local IP address.');
         errordlg('Could not find local IP address.');
     end
-    
-    setupname = 'CMP0357';
-    [status, cmdout] = system(['ping -n 1 ', setupname]);
-    expr = '\[([\d.]+)\]';
-    tokens = regexp(cmdout, expr, 'tokens');
-    
-    if ~isempty(tokens)
-        ipAddress = tokens{1}{1};
-        disp(['IP Address of ', setupname, ': ', ipAddress]);
-        app.ServerIPTextArea.Value = ipAddress;
-    end
 end
-remoteIP = ipAddress ; remotePort = 5001; % The IP address of A pc (behavioral PC)
-localIP =  localIP ;  localPort = 5002;  % The IP address of B pc (server PC)
 %% create the udp connection
-% set up the udp connection 
-u = udpport("datagram","LocalHost",localIP, "LocalPort", localPort);
+u  = udppport("datagram","LocalHost",localIP, "LocalPort", localPort);
 % Configure the callback to trigger on datagram reception
 configureCallback(u, "datagram", 10,@processDatagram);
-
-
-
-
-
-
 
 
 %% Listen to setups
@@ -49,13 +29,14 @@ while true
         [paradigm, setting , subjectID] = processDatagram(u, []);
         if paradigm
             message = sprintf('%s,%s,%s', paradigm, setting, num2str(subjectID));
-            write(u,message,"char",remoteIP,remotePort);
+            write(u,message,"char",info.Address,info.port);
             fprintf("sent...\n");
             clear paradigm;
             clear setting_name;
             clear subjectID;
+            clear info;
         end
-       
+        pause(1);
     end
 end
 
@@ -63,11 +44,11 @@ end
 
 %% set the callback function
 % Function to process received datagrams
-function [paradigm, setting , subjectID] = processDatagram(u, ~)
+function [paradigm, setting , subjectID,info] = processDatagram(u, ~)
     paradigm = '';
     setting ='';
     subjectID = '';
-    data = read(u,15,"uint8");  % Read the received datagram
+    [data,info] = read(u,15,"uint8");  % Read the received datagram
     fprintf("received...\n");
     receive_bytes = data.Data;  % Convert to 32-bit binary string
     received_str = char(receive_bytes);

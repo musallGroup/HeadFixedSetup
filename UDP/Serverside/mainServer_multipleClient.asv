@@ -10,7 +10,6 @@ if ispc
         localIP = tokens{1}{1};
          localPort = 5002;  % The IP address of B pc (server PC)
         disp(['Local IP Address: ', localIP]);
-        app.LocalIPTextArea.Value = char(localIP);
     else
         disp('Could not find local IP address.');
         errordlg('Could not find local IP address.');
