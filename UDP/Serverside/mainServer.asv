@@ -112,9 +112,8 @@ fileInfo = dir(fullfilePath);
 
 % read the paradigm from the excel file
 data = readtable(fullfilePath);
+data.date(length(data.date)+1,:)= {datetime('now', 'Format', 'yyyy-MM-dd')};
 data.weight(length(data.date)+1,:)= string(weight);
-data.date(length(data.date)+1,:)= datestr(now);
-writetable(data, fullfilePath, 'WriteMode', 'overwrite');
 
 setting = char(data.setting(1,1));
 paradigm = char(data.paradigm(1,1));
