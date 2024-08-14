@@ -35,7 +35,7 @@ global BpodSystem
     end
 
     % Replace 'hostname' with the actual hostname of the target PC
-    hostname = 'CMP0391'; 
+    hostname = 'CMP0395'; 
 
     % Use the 'ping' command to resolve the hostname to an IP address
     [status, cmdout] = system(['ping -n 1 ', hostname]);
@@ -66,4 +66,3 @@ global BpodSystem
     % Cleanup
     clear udpSocket;
 end
-
