@@ -1,8 +1,32 @@
 function send_perfomance(obj, ipAddress, port)
 global BpodSystem
     % send_perfomance Sends a MATLAB object via UDP
+%     % RELEVANT DATA FOR PERFORMANCE
+% 
+%     for iMods = [1 4 5]
+%         % detection
+%         trialCnt = sum(BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
+%         totalCnt = sum(BpodSystem.Data.Assisted & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
+%         rewardCnt = sum(BpodSystem.Data.Rewarded & BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
+%         BpodSystem.Data.PerfDet = num2str(rewardCnt/trialCnt);
+%         disp(['Self performed DETECTION ' cModality{iMods} ': ' num2str(trialCnt) ' trials (' num2str(totalCnt) ' total); Performance: ' num2str(rewardCnt/trialCnt)]);
+% 
+%         % discrimination
+%         trialCnt = sum(BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
+%         totalCnt = sum(BpodSystem.Data.Assisted & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
+%         rewardCnt = sum(BpodSystem.Data.Rewarded & BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
+%         BpodSystem.Data.PerfDis = num2str(rewardCnt/trialCnt);
+%         disp(['Self performed DISCRIMINATION ' cModality{iMods} ': ' num2str(trialCnt) ' trials (' num2str(totalCnt) ' total); Performance: ' num2str(rewardCnt/trialCnt)]);
+%     end
     % obj: The MATLAB object to be sent (e.g., struct, array, etc.)
-    obj = BpodSystem.Data;
+    obj = '';
+    if ~isempty(BpodSystem.Data.PerfDet)
+        obj = BpodSystem.Data.PerfDet;
+    elseif ~isempty(BpodSystem.Data.PerfDis)
+        obj = BpodSystem.Data.PerfDis;
+    else
+        disp('No Performance-Data found')
+    end
     % ipAddress: The IP address of the receiving machine as a string
     % For Windows:
     if ispc
@@ -43,19 +67,3 @@ global BpodSystem
     clear udpSocket;
 end
 
-%     RELEVANT DATA FOR PERFORMANCE
-
-%     for iMods = [1 4 5]
-%         % detection
-%         trialCnt = sum(BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
-%         totalCnt = sum(BpodSystem.Data.Assisted & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
-%         rewardCnt = sum(BpodSystem.Data.Rewarded & BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
-% 
-%         disp(['Self performed DETECTION ' cModality{iMods} ': ' num2str(trialCnt) ' trials (' num2str(totalCnt) ' total); Performance: ' num2str(rewardCnt/trialCnt)]);
-% 
-%         % discrimination
-%         trialCnt = sum(BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
-%         totalCnt = sum(BpodSystem.Data.Assisted & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
-%         rewardCnt = sum(BpodSystem.Data.Rewarded & BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
-%         disp(['Self performed DISCRIMINATION ' cModality{iMods} ': ' num2str(trialCnt) ' trials (' num2str(totalCnt) ' total); Performance: ' num2str(rewardCnt/trialCnt)]);
-%     end

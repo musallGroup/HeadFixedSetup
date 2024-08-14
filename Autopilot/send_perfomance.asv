@@ -1,10 +1,28 @@
-
-
-
 function send_perfomance(obj, ipAddress, port)
+global BpodSystem
     % send_perfomance Sends a MATLAB object via UDP
+    % RELEVANT DATA FOR PERFORMANCE
+
+    for iMods = [1 4 5]
+        % detection
+        trialCnt = sum(BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
+        totalCnt = sum(BpodSystem.Data.Assisted & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
+        rewardCnt = sum(BpodSystem.Data.Rewarded & BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 1 & BpodSystem.Data.StimType == iMods);
+        BpodSystem.Data.PerfDet = num2str(rewardCnt/trialCnt);
+        disp(['Self performed DETECTION ' cModality{iMods} ': ' num2str(trialCnt) ' trials (' num2str(totalCnt) ' total); Performance: ' num2str(rewardCnt/trialCnt)]);
+
+        % discrimination
+        trialCnt = sum(BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
+        totalCnt = sum(BpodSystem.Data.Assisted & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
+        rewardCnt = sum(BpodSystem.Data.Rewarded & BpodSystem.Data.Assisted & ~BpodSystem.Data.DidNotChoose & BpodSystem.Data.Modality == 2 & BpodSystem.Data.StimType == iMods);
+        BpodSystem.Data.PerfDis = num2str(rewardCnt/trialCnt);
+        disp(['Self performed DISCRIMINATION ' cModality{iMods} ': ' num2str(trialCnt) ' trials (' num2str(totalCnt) ' total); Performance: ' num2str(rewardCnt/trialCnt)]);
+    end
     % obj: The MATLAB object to be sent (e.g., struct, array, etc.)
-    obj = BpodSystem.Data;
+    obj = '';
+    if ~isempty(BpodSystem.Data.PerfDet)
+        obj = BpodSystem.Data.PerfDet;
+    elseif ~isempty(BpodSystem.Data.Perf)
     % ipAddress: The IP address of the receiving machine as a string
     % For Windows:
     if ispc
@@ -13,7 +31,7 @@ function send_perfomance(obj, ipAddress, port)
     end
 
     % Replace 'hostname' with the actual hostname of the target PC
-    hostname = 'CMP0357'; 
+    hostname = 'CMP0391'; 
 
     % Use the 'ping' command to resolve the hostname to an IP address
     [status, cmdout] = system(['ping -n 1 ', hostname]);
@@ -26,10 +44,8 @@ function send_perfomance(obj, ipAddress, port)
         ipAddress = tokens{1}{1};
         % Display the IP address
         disp(['IP Address of ', hostname, ': ', ipAddress]);
-        app.ServerIPTextArea.Value = ipAddress;
     else
         disp(['Could not resolve IP address for ', hostname]);
-        errordlg('The server could not be reached. Use the manual mode!');
     end
     % port: The port number on the receiving machine
     port = '5002';
@@ -41,7 +57,9 @@ function send_perfomance(obj, ipAddress, port)
 
     % Send the serialized object via UDP
     write(udpSocket, serializedObj, "uint8", ipAddress, port);
+    disp('data sent')
 
     % Cleanup
     clear udpSocket;
 end
+
