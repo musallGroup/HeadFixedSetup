@@ -53,7 +53,7 @@ else
 
                 if contains(response, 'RFID')
                     disp(['Correct response received on ', portName, ': ', response]);
-                    arduino = portName;
+                    arduinoPort = portName;
                     disp (['arduino:' portName])
                     break;  % Exit the loop if the expected response is received
                 end
