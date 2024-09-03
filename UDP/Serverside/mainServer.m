@@ -58,114 +58,11 @@ while true
 
             case stop_session
                 [performance,stage]=UpdateTable(message_info, []);
-                
-
-
-
-
-
                 clear paradigm;
                 clear setting_name;
                 clear subjectID;
+                flush u;
         end
 
     end
-end
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--Functions--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% set the callback function
-%Function to process received datagrams
-function [message_info,mode] = Interpreter(udp_object,~)
-data = read(u,15,"uint8");  % Read the received datagram
-fprintf("received...\n");
-receive_bytes = data.Data;  % Convert to 32-bit binary string
-received_str = char(receive_bytes);
-
-%pre-define the pattern
-pattern = '(\w+)\s*=\s*(\S+)';
-tokens = regexp(received_str, pattern, 'tokens');
-%Extract values from the message
-message_info = struct();
-for i = 1:length(tokens)
-    key = tokens{i}{1};   % Field name
-    value = tokens{i}{2}; % Field value
-    message_info.(key) = value;
-end
-
-mode = 'start_session'
-if isfield(message_info,'performance')
-    mode = 'end_session'
-end
-
-end
-
-
-%% process the message that we got
-function [paradigm, setting , subjectID] = processDatagram(message_info, ~)
-paradigm = '';
-setting ='';
-subjectID = '';
-
-if isfield (message_info,'No_ID') && isequal(message_info.No_ID, true)
-    % here we write whatever should happen if there is no ID from the
-    % reader
-    fullfilePath = GetPath(message_info.subjectID);
-    fileInfo = dir(fullfilePath);
-    data = readtable(fullfilePath);
-    data.weight(length(data.date)+1,:)= string(weight);
-    data.date(length(data.date)+1,:)= datestr(now);
-    writetable(data, fullfilePath, 'WriteMode', 'overwrite');
-
-    setting = char(data.setting(1,1));
-    paradigm = char(data.paradigm(1,1));
-
-else
-    % Extract ID and weight from binary representation
-    % splited=split(received_str,",");
-    % ID = splited{1,1};
-    % weight = splited{2,1};
-
-
-    % Extract the sibject ID
-    base_path = 'C:\Users\yousefi\Desktop\Projects\HeadFixedSetup\UDPCodes';
-    IDconverter_file = 'IDConvertor.xlsx';
-    IDconverter_path = fullfile(base_path,IDconverter_file);
-    IDconverter = readtable(IDconverter_path);
-    idx = find(strcmp(IDconverter.ID,ID)); %index
-    message_info.subjectID = IDconverter.Subject_ID(idx);
-    disp(subjectID);
-    %setting_path = char(subject_directory{1,1});
-
-    % read the paradigm assigned to this ID
-    fullfilePath = GetPath(message_info.subjectID);
-    fileInfo = dir(fullfilePath);
-
-    % read the paradigm from the excel file
-    data = readtable(fullfilePath);
-    data.weight(length(data.date)+1,:)= string(weight);
-    data.date(length(data.date)+1,:)= datestr(now);
-    writetable(data, fullfilePath, 'WriteMode', 'overwrite');
-
-    setting = char(data.setting(1,1));
-    paradigm = char(data.paradigm(1,1));
-    % Check if the cell value is a string (name)
-
-end
-% Display the results
-fprintf('%s\n%s\n', ID, weight);
-end
-%% Function to find the table
-function [fullfilePath] = GetPath(subjectID)
-setting_path = 'C:\Users\yousefi\Desktop\Projects\HeadFixedSetup\UDPCodes';
-filename = [num2str(subjectID), '.xlsx'];
-fullfilePath = fullfile(setting_path, filename);
-end
-
-%% function to overwrite the info into the excel file
-function [performance,stage]=UpdateTable(message_info, ~)
-fullfilePath = GetPath(message_info.subjectID);
-fileInfo = dir(fullfilePath);
-
-
 end
