@@ -31,7 +31,7 @@ else
     IDconverter_file = 'IDConvertor.xlsx';
     IDconverter_path = fullfile(base_path,IDconverter_file);
     IDconverter = readtable(IDconverter_path);
-    idx = find(strcmp(IDconverter.ID,ID)); %index
+    idx = find(strcmp(IDconverter.ID,message_info.ID)); %index
     message_info.subjectID = IDconverter.Subject_ID(idx);
     disp(subjectID);
     %setting_path = char(subject_directory{1,1});

@@ -1,4 +1,4 @@
-% function to set the UPD connection and listen and send
+% function to set the +UPD connection and listen and send
 %% IP configuration
 if ispc
     % This block of code will only execute if the operating system is Windows
@@ -15,7 +15,7 @@ if ispc
         errordlg('Could not find local IP address.');
     end
 
-    setupname = 'CMP0357';
+    setupname = 'CMP0413';
     [status, cmdout] = system(['ping -n 1 ', setupname]);
     expr = '\[([\d.]+)\]';
     tokens = regexp(cmdout, expr, 'tokens');
@@ -42,14 +42,14 @@ while true
         [message_info,mode] = Interpreter(u,[]);
         %[paradigm, setting , subjectID] = processDatagram(u, []);
         switch mode
-            case start_session
+            case 'start_session'
                 [paradigm, setting , subjectID] = processDatagram(message_info, []);
                 message = sprintf('%s,%s,%s', paradigm, setting, num2str(subjectID));
                 write(u,message,"char",remoteIP,remotePort);
                 fprintf("sent...\n");
                 fprintf("waiting for performance...");
 
-            case stop_session
+            case 'end_session'
                 [performance,stage]=UpdateTable(message_info, []);
                 clear paradigm;
                 clear setting_name;
