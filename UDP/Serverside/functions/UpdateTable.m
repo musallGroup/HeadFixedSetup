@@ -5,11 +5,8 @@ function [performance,stage]=UpdateTable(message_info, ~)
 
     data = readtable(fullfilePath);
     rows = height(data);
-    data.endsession(rows,:)= string(message_info.weight);
-    data.date(rows+1,:) = {string(datestr(now))};
+    data.end_of_session(rows,:) = {string(datestr(now, 'HH:MM:SS'))};
+    data.performance(rows,:) = string(message_info.performance);
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
-
-
-
 
 end

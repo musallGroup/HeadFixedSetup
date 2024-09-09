@@ -13,6 +13,7 @@ if isfield (message_info,'No_ID') && isequal(str2double(message_info.No_ID), 1)
     rows = height(data);
     data.weight(rows+1,:)= string(message_info.weight);
     data.date(rows+1,:) = {string(datestr(now))};
+    data.start_of_session(rows+1,:) = {string(datestr(now, 'HH:MM:SS'))};
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
 
     setting = char(data.setting(1,1));
@@ -38,11 +39,12 @@ else
     % read the paradigm assigned to this ID
     fullfilePath = GetPath(message_info.subjectID);
     fileInfo = dir(fullfilePath);
-
-    % read the paradigm from the excel file
     data = readtable(fullfilePath);
-    data.weight(length(data.date)+1,:)= string(weight);
-    data.date(length(data.date)+1,:)= datestr(now);
+    % read the paradigm from the excel file
+    rows = height(data);
+    data.weight(rows+1,:)= string(message_info.weight);
+    data.date(rows+1,:) = {string(datestr(now))};
+    data.start_of_session(rows+1,:) = {string(datestr(now, 'HH:MM:SS'))};
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
 
     setting = char(data.setting(1,1));

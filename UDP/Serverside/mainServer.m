@@ -34,13 +34,6 @@ u = udpport("datagram","LocalHost",localIP, "LocalPort", localPort);
 % Configure the callback to trigger on datagram reception
 configureCallback(u, "datagram", 10,@Interpreter);
 
-
-
-
-
-
-
-
 %% Listen to setups
 while true
     % Check if there are datagrams available to process
@@ -65,4 +58,31 @@ while true
         end
 
     end
+end
+
+
+%% set the callback function
+%Function to process received datagrams
+function [message_info,mode] = Interpreter(u,~)
+data = read(u,15,"uint8");  % Read the received datagram
+fprintf("received...\n");
+receive_bytes = data.Data;  % Convert to 32-bit binary string
+received_str = char(receive_bytes);
+
+%pre-define the pattern
+pattern = '(\w+)\s*=\s*(\S+)';
+tokens = regexp(received_str, pattern, 'tokens');
+%Extract values from the message
+message_info = struct();
+for i = 1:length(tokens)
+    key = tokens{i}{1};   % Field name
+    value = tokens{i}{2}; % Field value
+    message_info.(key) = value;
+end
+
+mode = 'start_session';
+if isfield(message_info,'performance')
+    mode = 'end_session';
+end
+
 end
