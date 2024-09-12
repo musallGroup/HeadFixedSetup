@@ -43,8 +43,9 @@ while true
         %[paradigm, setting , subjectID] = processDatagram(u, []);
         switch mode
             case 'start_session'
-                [paradigm, setting , subjectID] = processDatagram(message_info, []);
-                message = sprintf('%s,%s,%s', paradigm, setting, num2str(subjectID));
+                [paradigm, setting , subjectID, task, stage,photometry, optogenetic] = processDatagram(message_info, []);
+                message = sprintf('paradigm= %s,setting= %s,subjectID= %s,task= %s,stage= %s,photometry= %s,optogenetic=%s', ...
+                    paradigm, setting, num2str(subjectID),task,stage,photometry,optogenetic);
                 write(u,message,"char",remoteIP,remotePort);
                 fprintf("sent...\n");
                 fprintf("waiting for performance...");
