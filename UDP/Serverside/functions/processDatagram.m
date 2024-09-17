@@ -51,12 +51,12 @@ else
     data = readtable(fullfilePath);
     % read the paradigm from the excel file
     rows = height(data);
-    data.weight(rows+1,:)= string(message_info.weight);
-    data.date(rows+1,:) = {string(datestr(now))};
-    data.start_of_session(rows+1,:) = {string(datestr(now, 'HH:MM:SS'))};
+    data.weight(rows,:)= string(message_info.weight);
+    data.date(rows,:) = {string(datestr(now))};
+    data.start_of_session(rows,:) = {string(datestr(now, 'HH:MM:SS'))};
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
 
-    change_stage = data.change_stage(rows-1,:);
+    change_stage = data.change_stage(rows,:);
     setting = char(data.setting(1,1));
     paradigm = char(data.paradigm(1,1));
     stage = string(data.stage(rows,:));
