@@ -1,5 +1,5 @@
 %% process the message that we got
-function [paradigm, setting , subjectID, stage,photometry, optogenetic,change_stage] = processDatagram(message_info,~);
+function [paradigm, setting , subjectID, stage,photometry, optogenetic,widefield,change_stage] = processDatagram(message_info,~);
 paradigm = '';
 setting ='';
 subjectID = '';
@@ -26,6 +26,7 @@ if isfield (message_info,'No_ID') && isequal(str2double(message_info.No_ID), 1)
     stage = string(data.stage(rows,:));
     photometry = string(data.photometry(1,1));
     optogenetic = string(data.optogenetic(1,1));
+    widefield = string(data.widefield(1,1));
 
 else
     % Extract ID and weight from binary representation
@@ -62,6 +63,7 @@ else
     photometry = string(data.photometry(1,1));
     optogenetic = string(data.optogenetic(1,1));
     subjectID = message_info.subjectID;
+    widefield = string(data.widefield(1,1));
 
 end
 % Display the results
