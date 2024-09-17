@@ -1,14 +1,17 @@
 %% function to overwrite the info into the excel file
-function [performance,stage]=UpdateTable(message_info, ~)
+function UpdateTable(message_info, ~)
     fullfilePath = GetPath(message_info.subjectID);
     fileInfo = dir(fullfilePath);
 
     data = readtable(fullfilePath);
     rows = height(data);
     data.end_of_session(rows,:) = {string(datestr(now, 'HH:MM:SS'))};
-    data.performance(rows,:) = string(message_info.performance);
+    data.performance(rows,:) = {string(message_info.performance)};
     if message_info.performance > data.threshold(1,1)
-        data.stage()
+        data.stage(rows,:)={string(message_info.stage + 1)};
+        data.change_stage(rows+1,:) = {1};
+    else
+        data.stage(rows,:) = string(message_info.stage);
     end
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
 

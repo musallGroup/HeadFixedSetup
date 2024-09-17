@@ -18,7 +18,7 @@ if isfield (message_info,'No_ID') && isequal(str2double(message_info.No_ID), 1)
     data.start_of_session(rows+1,:) = {string(datestr(now, 'HH:MM:SS'))};
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
     
-    change_stage = data.chaneg_stage(rows,:);
+    change_stage = data.change_stage(rows-1,:);
     subjectID = message_info.subjectID;
     setting = char(data.setting(1,1));
     paradigm = char(data.paradigm(1,1));
@@ -40,8 +40,8 @@ else
     IDconverter_path = fullfile(base_path,IDconverter_file);
     IDconverter = readtable(IDconverter_path);
     idx = find(strcmp(IDconverter.ID,message_info.ID)); %index
-    message_info.subjectID = IDconverter.Subject_ID(idx);
-    disp(subjectID);
+    message_info.subjectID = IDconverter.SubjectID(idx);
+    disp(message_info.subjectID);
     %setting_path = char(subject_directory{1,1});
 
     % read the paradigm assigned to this ID

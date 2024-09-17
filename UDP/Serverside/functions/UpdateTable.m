@@ -6,12 +6,12 @@ function UpdateTable(message_info, ~)
     data = readtable(fullfilePath);
     rows = height(data);
     data.end_of_session(rows,:) = {string(datestr(now, 'HH:MM:SS'))};
-    data.performance(rows,:) = string(message_info.performance);
-    if message_info.performance > data.threshold(1,1)
-        data.stage(rows,:)=string(message_info.stage + 1);
-        data.chaneg_stage(rows+1,:) = {1};
+    data.performance(rows,:) = {string(message_info.performance)};
+    if str2num( message_info.performance) > data.threshold(1,1)
+        data.stage(rows,:)={string(message_info.stage + 1)};
+        data.change_stage(rows+1,:) = 1;
     else
-        data.stage(rows,:) = string(message_info.stage);
+        data.stage(rows,:) = {string(message_info.stage)};
     end
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
 
