@@ -22,10 +22,9 @@ if sum(bhv.Assisted) > 25
 end
 performance = num2str(round(perf(x,:),2));
 disp(['Performance / session: ' num2str(round(perf(x,:),2))]);
-
   obj = '';
-    if ~isempty(performance)
-        obj = performance;
+    if ~isempty(perf)
+        obj = perf;
     else
         disp('No Performance-Data found')
     end

@@ -215,9 +215,10 @@ switch Opstring
             if BpodSystem.EmulatorMode == 0
                 BpodSystem.StopModuleRelay;
             end
-            BpodSystem.GUIHandles.rfidGUI = AutoPilot; % open the autopilot GUI
+%             BpodSystem.GUIHandles.rfidGUI = AutoPilot; % open the autopilot GUI
             %BpodSystem.GUIHandles.rfidGUI.SubjectTextArea.Value =  BpodSystem.Status.CurrentSubjectName;
             %LaunchManager;
+            SpoutAdjustment_GUI;
         else
             if BpodSystem.Status.Pause == 0
                 disp('Pause requested. The system will pause after the current trial completes.')
@@ -291,5 +292,6 @@ switch Opstring
         if BpodSystem.Status.Pause == 1
             BpodSystem.Status.Pause = 0;
         end
+        send_perfomance;
         % ---- end Shut down Plugins
 end

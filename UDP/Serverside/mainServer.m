@@ -51,7 +51,7 @@ while true
                 fprintf("waiting for performance...");
 
             case 'end_session'
-                [performance,stage]=UpdateTable(message_info, []);
+                UpdateTable(message_info, []);
                 clear paradigm;
                 clear setting_name;
                 clear subjectID;
