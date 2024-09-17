@@ -1,5 +1,5 @@
 %% process the message that we got
-function [paradigm, setting , subjectID, task, stage,photometry, optogenetic] = processDatagram(message_info,~);
+function [paradigm, setting , subjectID, task, stage,photometry, optogenetic,change_stage] = processDatagram(message_info,~);
 paradigm = '';
 setting ='';
 subjectID = '';
@@ -18,6 +18,7 @@ if isfield (message_info,'No_ID') && isequal(str2double(message_info.No_ID), 1)
     data.start_of_session(rows+1,:) = {string(datestr(now, 'HH:MM:SS'))};
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
     
+    change_stage = data.chaneg_stage(rows,:);
     subjectID = message_info.subjectID;
     setting = char(data.setting(1,1));
     paradigm = char(data.paradigm(1,1));

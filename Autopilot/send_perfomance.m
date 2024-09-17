@@ -1,4 +1,4 @@
-function [performance] = send_perfomance(obj, ipAddress, port)
+function send_perfomance(obj, ipAddress, port)
 % function Autopilot_checkperfromance
 % make learning curve plot for current animal
 
