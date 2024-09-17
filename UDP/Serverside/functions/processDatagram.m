@@ -12,21 +12,21 @@ if isfield (message_info,'No_ID') && isequal(str2double(message_info.No_ID), 1)
     data = readtable(fullfilePath);
 
     rows = height(data);
-    
+
     data.weight(rows+1,:)= string(message_info.weight);
     data.date(rows+1,:) = {string(datestr(now))};
     data.start_of_session(rows+1,:) = {string(datestr(now, 'HH:MM:SS'))};
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
-    
+
     change_stage = data.change_stage(rows-1,:);
     subjectID = message_info.subjectID;
     setting = char(data.setting(1,1));
     paradigm = char(data.paradigm(1,1));
-    
+
     stage = string(data.stage(rows,:));
     photometry = string(data.photometry(1,1));
     optogenetic = string(data.optogenetic(1,1));
-   
+
 else
     % Extract ID and weight from binary representation
     % splited=split(received_str,",");
@@ -55,9 +55,13 @@ else
     data.start_of_session(rows+1,:) = {string(datestr(now, 'HH:MM:SS'))};
     writetable(data, fullfilePath, 'WriteMode', 'overwrite');
 
+    change_stage = data.change_stage(rows-1,:);
     setting = char(data.setting(1,1));
     paradigm = char(data.paradigm(1,1));
-    % Check if the cell value is a string (name)
+    stage = string(data.stage(rows,:));
+    photometry = string(data.photometry(1,1));
+    optogenetic = string(data.optogenetic(1,1));
+    subjectID = message_info.subjectID;
 
 end
 % Display the results
