@@ -81,7 +81,7 @@ void set_default_settings(void)
   setting_timestamp_enable = true;
 
   //Reset decimals
-  setting_decimal_places = 2;
+  setting_decimal_places = 4;
 
   //Reset average amount
   setting_average_amount = 4;
