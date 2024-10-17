@@ -1,0 +1,126 @@
+
+(rules PCB controller
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (eu.mihosoft.freerouting.autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 2245)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 4.0)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.3)
+    )
+  )
+  (rule
+    (width 500.0)
+    (clear 400.2)
+    (clear 250.0 (type smd_to_turn_gap))
+    (clear 600.2 (type default_9V))
+    (clear 100.0 (type smd_smd))
+    (clear 600.2 (type smd_9V))
+    (clear 600.2 (type "kicad_default"_9V))
+    (clear 600.2 (type 9V_9V))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (padstack "Via[0-1]_1000:500_um"
+    (shape
+      (circle F.Cu 1000.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 1000.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_1000:500_um" "Via[0-1]_1000:500_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_1000:500_um-kicad_default" "Via[0-1]_1000:500_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_800:400_um-9V" "Via[0-1]_800:400_um" 9V
+  )
+  (via 
+    "Via[0-1]_1000:500_um-9V" "Via[0-1]_1000:500_um" 9V
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (via_rule
+    9V "Via[0-1]_1000:500_um-9V"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    +12V GND +5V "Net-(J2-Pad8)" "Net-(HandleL-ToMotor1-Pad4)" "Net-(HandleL-ToMotor1-Pad3)" "Net-(HandleL-ToMotor1-Pad2)" "Net-(HandleL-ToMotor1-Pad1)"
+    "Net-(HandleR-ToMotor1-Pad4)" "Net-(HandleR-ToMotor1-Pad3)" "Net-(HandleR-ToMotor1-Pad2)" "Net-(HandleR-ToMotor1-Pad1)" "Net-(J2-Pad6)" "Net-(J2-Pad2)" "Net-(J2-Pad7)" "Net-(J2-Pad4)"
+    "Net-(J2-Pad5)" "Net-(J2-Pad3)" "Net-(MC-LeverL1-Pad16)" "Net-(MC-LeverL1-Pad15)" "Net-(MC-LeverL1-Pad13)" "Net-(MC-LeverL1-Pad12)" "Net-(MC-LeverL1-Pad11)" "Net-(MC-LeverL1-Pad10)"
+    "Net-(MC-LeverL1-Pad2)" "Net-(MC-LeverL1-Pad9)" "Net-(MC-LeverR1-Pad16)" "Net-(MC-LeverR1-Pad15)" "Net-(MC-LeverR1-Pad13)" "Net-(MC-LeverR1-Pad12)" "Net-(MC-LeverR1-Pad11)" "Net-(MC-LeverR1-Pad10)"
+    "Net-(MC-LeverR1-Pad2)" "Net-(MC-LeverR1-Pad9)" "Net-(MC-SpoutL1-Pad16)" "Net-(MC-SpoutL1-Pad15)" "Net-(MC-SpoutL1-Pad6)" "Net-(MC-SpoutL1-Pad13)" "Net-(MC-SpoutL1-Pad5)" "Net-(MC-SpoutL1-Pad12)"
+    "Net-(MC-SpoutL1-Pad4)" "Net-(MC-SpoutL1-Pad11)" "Net-(MC-SpoutL1-Pad3)" "Net-(MC-SpoutL1-Pad10)" "Net-(MC-SpoutL1-Pad2)" "Net-(MC-SpoutL1-Pad9)" "Net-(MC-SpoutR1-Pad16)" "Net-(MC-SpoutR1-Pad15)"
+    "Net-(MC-SpoutR1-Pad6)" "Net-(MC-SpoutR1-Pad13)" "Net-(MC-SpoutR1-Pad5)" "Net-(MC-SpoutR1-Pad12)" "Net-(MC-SpoutR1-Pad4)" "Net-(MC-SpoutR1-Pad11)" "Net-(MC-SpoutR1-Pad3)" "Net-(MC-SpoutR1-Pad10)"
+    "Net-(MC-SpoutR1-Pad2)" "Net-(MC-SpoutR1-Pad9)" "Net-(SoundVisionL1-Pad4)" "Net-(SoundVisionL1-Pad3)" "Net-(SoundVisionL1-Pad2)" "Net-(SoundVisionL1-Pad1)" "Net-(SoundVisionR1-Pad4)" "Net-(SoundVisionR1-Pad3)"
+    "Net-(SoundVisionR1-Pad2)" "Net-(SoundVisionR1-Pad1)" "Net-(U1-Pad5)" "Net-(U1-Pad6)" "Net-(U1-Pad28)" "Net-(U1-Pad27)" "Net-(U1-Pad26)" "Net-(ToHandleL1-Pad4)"
+    "Net-(ToHandleL1-Pad1)" "Net-(ToHandleR1-Pad4)" "Net-(ToHandleR1-Pad1)" "Net-(U1-Pad2)" "Net-(U1-Pad3)" "Net-(U1-Pad4)" "Net-(U1-Pad37)" "Net-(U1-Pad36)"
+    "Net-(U1-Pad35)" "Net-(U1-Pad34)" "Net-(U1-Pad31)" "Net-(U1-Pad15)" "Net-(U1-Pad16)" "Net-(U1-Pad19)" "Net-(U1-Pad18)" "Net-(U2-Pad9)"
+    "Net-(U2-Pad8)" "Net-(U2-Pad3)" "Net-(12V1-Pad1)" "Net-(5V1-Pad1)" "Net-(9V1-Pad1)"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class 9V
+    GND1 +9V
+    (clearance_class 9V)
+    (via_rule 9V)
+    (rule
+      (width 700.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)

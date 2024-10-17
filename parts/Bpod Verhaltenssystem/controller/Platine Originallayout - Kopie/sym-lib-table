@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name spatialsparrow)(type Legacy)(uri ${KIPRJMOD}/../lib/spatialsparrow.lib)(options "")(descr ""))
+  (lib (name teensy)(type Legacy)(uri ${KIPRJMOD}/../lib/teensy.lib)(options "")(descr ""))
+)

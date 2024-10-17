@@ -1,0 +1,50 @@
+Removed Pin From Net: NetName=GND Pin=C1-2
+Removed Pin From Net: NetName=GND Pin=C2-2
+Removed Pin From Net: NetName=GND Pin=C3-2
+Removed Pin From Net: NetName=GND Pin=C4-2
+Removed Pin From Net: NetName=GND Pin=J2-2
+Removed Pin From Net: NetName=GND Pin=JP1-1
+Removed Pin From Net: NetName=GND Pin=P5-2
+Removed Pin From Net: NetName=GND Pin=U2-9
+Removed Pin From Net: NetName=GND Pin=U2-15
+Removed Pin From Net: NetName=GND Pin=U3-9
+Removed Pin From Net: NetName=GND Pin=U3-15
+Removed Pin From Net: NetName=GND Pin=U4-9
+Removed Pin From Net: NetName=GND Pin=U4-15
+Removed Pin From Net: NetName=GND Pin=U5-9
+Removed Pin From Net: NetName=GND Pin=U5-15
+Change Component DesignItemId : Designator=SW1 Old DesignItemId=CMP-011-00017-1 New DesignItemId=CMP-011-00017-2
+Change Component DesignItemId : Designator=SW2 Old DesignItemId=CMP-011-00017-1 New DesignItemId=CMP-011-00017-2
+Change Component DesignItemId : Designator=SW3 Old DesignItemId=CMP-011-00017-1 New DesignItemId=CMP-011-00017-2
+Change Component DesignItemId : Designator=J1 Old DesignItemId=CMP-00027-00002-2 New DesignItemId=CMP-00027-00002-3
+Change Component DesignItemId : Designator=J2 Old DesignItemId=CMP-00027-00002-2 New DesignItemId=CMP-00027-00002-3
+Change Component DesignItemId : Designator=J3 Old DesignItemId=CMP-00027-00002-2 New DesignItemId=CMP-00027-00002-3
+Change Component Footprint: Designator=J1 Old Footprint=CUI_PJ-102AH New Footprint=CUI_PJ-102AH
+Change Component Footprint: Designator=J2 Old Footprint=CUI_PJ-102AH New Footprint=CUI_PJ-102AH
+Change Component Footprint: Designator=J3 Old Footprint=CUI_PJ-102AH New Footprint=CUI_PJ-102AH
+Change Component Footprint: Designator=SW1 Old Footprint=L102021ML04Q-Footprint-1 New Footprint=L102021ML04Q-Footprint-1
+Change Component Footprint: Designator=SW2 Old Footprint=L102021ML04Q-Footprint-1 New Footprint=L102021ML04Q-Footprint-1
+Change Component Footprint: Designator=SW3 Old Footprint=L102021ML04Q-Footprint-1 New Footprint=L102021ML04Q-Footprint-1
+Change Managed Component Library Link : Designator=J1 Old VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 New VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 Old ItemGUID=f3f5e28d-209f-4bd1-b1c4-4b1643b76720 New ItemGUID=f3f5e28d-209f-4bd1-b1c4-4b1643b76720 Old RevisionGUID=f3b66022-dafd-40b6-be05-bcaa798f548f New RevisionGUID=062bfe51-a340-4118-a6ab-db9372fce30c
+Change Managed Component Library Link : Designator=J2 Old VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 New VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 Old ItemGUID=f3f5e28d-209f-4bd1-b1c4-4b1643b76720 New ItemGUID=f3f5e28d-209f-4bd1-b1c4-4b1643b76720 Old RevisionGUID=f3b66022-dafd-40b6-be05-bcaa798f548f New RevisionGUID=062bfe51-a340-4118-a6ab-db9372fce30c
+Change Managed Component Library Link : Designator=J3 Old VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 New VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 Old ItemGUID=f3f5e28d-209f-4bd1-b1c4-4b1643b76720 New ItemGUID=f3f5e28d-209f-4bd1-b1c4-4b1643b76720 Old RevisionGUID=f3b66022-dafd-40b6-be05-bcaa798f548f New RevisionGUID=062bfe51-a340-4118-a6ab-db9372fce30c
+Change Managed Component Library Link : Designator=SW1 Old VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 New VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 Old ItemGUID=9ebe93e8-538c-4d4a-a36e-70d9b987a1db New ItemGUID=9ebe93e8-538c-4d4a-a36e-70d9b987a1db Old RevisionGUID=c16e650c-729d-4a9c-b80c-44a04aa929c6 New RevisionGUID=309a739d-7495-4735-839a-54965791b336
+Change Managed Component Library Link : Designator=SW2 Old VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 New VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 Old ItemGUID=9ebe93e8-538c-4d4a-a36e-70d9b987a1db New ItemGUID=9ebe93e8-538c-4d4a-a36e-70d9b987a1db Old RevisionGUID=c16e650c-729d-4a9c-b80c-44a04aa929c6 New RevisionGUID=309a739d-7495-4735-839a-54965791b336
+Change Managed Component Library Link : Designator=SW3 Old VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 New VaultGUID=24C49A2F-C059-4AA2-B800-0AA4E0514CB1 Old ItemGUID=9ebe93e8-538c-4d4a-a36e-70d9b987a1db New ItemGUID=9ebe93e8-538c-4d4a-a36e-70d9b987a1db Old RevisionGUID=c16e650c-729d-4a9c-b80c-44a04aa929c6 New RevisionGUID=309a739d-7495-4735-839a-54965791b336
+Added Pin To Net: NetName=GND1 Pin=C1-2
+Added Pin To Net: NetName=GND1 Pin=C2-2
+Added Pin To Net: NetName=GND1 Pin=C3-2
+Added Pin To Net: NetName=GND1 Pin=C4-2
+Added Pin To Net: NetName=GND1 Pin=J2-2
+Added Pin To Net: NetName=GND1 Pin=JP1-1
+Added Pin To Net: NetName=GND1 Pin=P5-2
+Added Pin To Net: NetName=GND1 Pin=U2-9
+Added Pin To Net: NetName=GND1 Pin=U2-15
+Added Pin To Net: NetName=GND1 Pin=U3-9
+Added Pin To Net: NetName=GND1 Pin=U3-15
+Added Pin To Net: NetName=GND1 Pin=U4-9
+Added Pin To Net: NetName=GND1 Pin=U4-15
+Added Pin To Net: NetName=GND1 Pin=U5-9
+Added Pin To Net: NetName=GND1 Pin=U5-15
+Added Net: Name=GND1
+Added Rule: Name=Schematic Supply Nets_4
