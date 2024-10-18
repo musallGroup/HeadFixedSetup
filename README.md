@@ -8,8 +8,8 @@ Opperant conditioning is essential for quantifying animal perception. We develop
 Please refer to the manual for detailed installation steps.
 
 # Software
-At the moment the setup  is running with Matlab, Bpod(Matlab based) and Python.
-To prepare your experiments start Matlab and enter "bpod" into the console. This will open the Bpod GUI. Now flush the spouts and press the start button after the spouts are flushed (this has to be calibrated occasionally). Now  choose your paradigm and adjust your subject and settings. Now adjust your spouts positions to a proper one and press the "give water" button. Now place your mouse into the setup and head fix it. The lick detection threshold may need to be adjusted. Now toggle the the button in the upper left from pause to run. If your experiment is done press the "stop" button.
+At the moment the setup  is running with Matlab, Bpod (Matlab based).
+To prepare your experiments start Matlab and enter "bpod" into the console. This will open the Bpod GUI. Flush the spouts and press the start button after the spouts are flushed (this has to be calibrated occasionally). Afterwards,  choose your paradigm and adjust your subject and settings. Adjust your spouts positions to a proper one and press the "give water" button. Place your mouse into the setup and head fix it. The lick detection threshold may need to be adjusted. Toggle the button in the upper left from pause to run. If your experiment is done press the "stop" button.
 
 # Future
 Stay tuned for new paradigms and new features of the head-fixed setup.
