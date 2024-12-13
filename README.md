@@ -7,6 +7,9 @@ Operant conditioning is essential for quantifying animal perception. We develope
 # Installation
 Please refer to the manual for detailed installation steps.
 
+
+![Connections](https://github.com/user-attachments/assets/48c63050-7954-4c85-bdbc-ce866a0ca438)
+
 # Software
 At the moment the setup  is running with Matlab, Bpod (Matlab based).
 To prepare your experiments start Matlab and enter "bpod" into the console. This will open the Bpod GUI. Flush the spouts and press the start button after the spouts are flushed (this has to be calibrated occasionally). Afterwards,  choose your paradigm and adjust your subject and settings. Adjust your spouts positions to a proper one and press the "give water" button. Place your mouse into the setup and head fix it. The lick detection threshold may need to be adjusted. Toggle the button in the upper left from pause to run. If your experiment is done press the "stop" button.
