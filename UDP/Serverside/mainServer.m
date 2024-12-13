@@ -15,7 +15,7 @@ if ispc
         errordlg('Could not find local IP address.');
     end
 
-    setupname = 'CMP0413';
+    setupname = 'CMP0391';
     [status, cmdout] = system(['ping -n 1 ', setupname]);
     expr = '\[([\d.]+)\]';
     tokens = regexp(cmdout, expr, 'tokens');

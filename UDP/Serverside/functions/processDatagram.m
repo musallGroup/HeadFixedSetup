@@ -35,11 +35,11 @@ else
     % weight = splited{2,1};
 
 
-    % Extract the sibject ID
-    base_path = 'C:\Users\yousefi\Desktop\Projects\HeadFixedSetup\UDPCodes';
+    % Extract the subject ID
+    % base_path = 'Tables';
     IDconverter_file = 'IDConvertor.xlsx';
-    IDconverter_path = fullfile(base_path,IDconverter_file);
-    IDconverter = readtable(IDconverter_path);
+    % IDconverter_path = fullfile(base_path,IDconverter_file);
+    IDconverter = readtable(IDconverter_file);     %(IDconverter_path);
     idx = find(strcmp(IDconverter.ID,message_info.ID)); %index
     message_info.subjectID = IDconverter.SubjectID(idx);
     disp(message_info.subjectID);
