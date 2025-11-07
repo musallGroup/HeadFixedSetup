@@ -1,0 +1,13 @@
+Line #,Name,Description,Designator,Quantity,Manufacturer 1,Manufacturer Part Number 1
+,,,,,,
+,TAJC107K016RNJ,"Standard Tantalum, 100 uF, +/- 10%, 16 V, -55 to 125 degC, 2312 (6032 Metric), RoHS, Tape and Reel","C1, C2",2,Kyocera / AVX,TAJC107K016RNJ
+,PJ-102AH,"12V, 2.5A, 2mm Dia","J1, J2, J3",3,Same Sky,PJ-102AH
+,5569118-1,"Telecom and Datacom Connector, 8 Contact(s), Female, Right Angle, Solder Terminal, Locking, Jack","J4, J5, J6, J7",4,TE Connectivity,5569118-1
+,282825-2,"Strip Terminal Block, 15A, 1 Row(s), 1 Deck(s)","P1, P2, P3, P4, P5, P6, P7",7,TE Connectivity,282825-2
+,282825-5,"Strip Terminal Block, 15A, 1 Row(s), 1 Deck(s)",P12,1,TE Connectivity / AMP,282825-5
+,282825-6,"Strip Terminal Block, 15A, 1 Row(s), 1 Deck(s)","P13, P14",2,TE Connectivity / AMP,282825-6
+,SL 2 025 8 G,"Fischer  SL 2 025 8 G, Stiftleiste, 2 Reiheb, 8 Pole, vergoldet","P15, P16, P17",3,Fischer Elektronik,SL 2 025 72G
+,SL_1_025_14_ G,"Fischer SL_1_025_14_ G, Stiftleiste, 1 Reiheb, 14 Pole, vergoldet","P18, P20",2,Fischer Elektronik,SL 1/025/36G
+,SL_1_025_5_ G,"Fischer SL_1_025_5_ G, Stiftleiste, 1 Reiheb, 5 Pole, vergoldet",P19,1,Fischer Elektronik,SL 1/025/36G
+,Teensy 3.2,"Development Boards & Kits, ARM Teensy 3.2 and header",U1,1,SparkFun,DEV-13736
+,DRV8834,DRV8834 Low-Voltage Stepper Motor Driver Carrier,"U2, U3",2,Pololu,2134
