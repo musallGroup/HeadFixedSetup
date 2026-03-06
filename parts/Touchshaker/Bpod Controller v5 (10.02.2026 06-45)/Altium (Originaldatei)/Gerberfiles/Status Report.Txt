@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Bpod Controller v5.PrjPcb]
+   Generated File[Bpod Controller v5-RoundHoles-Plated.TXT]
+   Generated File[Bpod Controller v5-SlotHoles-Plated.TXT]
+   Generated File[Bpod Controller v5.LDP]
+   Generated File[Bpod Controller v5.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 08:42:49 On 10.02.2026

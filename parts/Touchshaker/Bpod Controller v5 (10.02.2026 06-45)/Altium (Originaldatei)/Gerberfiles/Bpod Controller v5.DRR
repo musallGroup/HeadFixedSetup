@@ -1,0 +1,23 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: Bpod Controller v5.PcbDoc   10.02.2026  08:42:49
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Side to Bottom Side
+ASCII Plated RoundHoles File : Bpod Controller v5-RoundHoles-Plated.TXT
+ASCII Plated SlotHoles File : Bpod Controller v5-SlotHoles-Plated.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      0.5mm (20mil)                                             Round             2         PTH        1.49mm (0.06inch)
+T2      0.6mm (24mil)                                             Round             2         PTH        2.88mm (0.11inch)
+T3      0.7mm (28mil)                                             Slot              9         PTH        393.41mm (15.49inch)
+T4      0.8mm (31mil)                                             Round             2         PTH        21.94mm (0.86inch)
+T5      0.9mm (35mil)                                             Round             69        PTH        295.28mm (11.63inch)
+T6      1mm (39mil)                                               Round             90        PTH        407.69mm (16.05inch)
+T7      1.5mm (59mil)                                             Round             31        PTH        534.55mm (21.05inch)
+T8      3.2mm (126mil)                                            Round             2         PTH        109.22mm (4.30inch)
+T9      3.3mm (130mil)                                            Round             8         PTH        73.13mm (2.88inch)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              215
+
+Total Processing Time (hh:mm:ss) : 00:00:00

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 0)
+  (lib (name "Bpod Controller v5-altium-import")(type "KiCad")(uri "${KIPRJMOD}/Bpod Controller v5-altium-import.kicad_sym")(options "")(descr ""))
+)
