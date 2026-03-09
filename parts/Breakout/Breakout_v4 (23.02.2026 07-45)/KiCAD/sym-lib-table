@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Breakout_v4-altium-import")(type "KiCad")(uri "${KIPRJMOD}/Breakout_v4-altium-import.kicad_sym")(options "")(descr ""))
+  (lib (name "Breakout_v4")(type "KiCad")(uri "C:/Users/d.hellenbrandt/Sciebo/Freigaben/Bpod Verhaltenssystem/Breakout_v4 (23.02.2026 07-45)/Altium (Originaldatei)/Breakout_v4.kicad_sym")(options "")(descr ""))
+)
