@@ -9,8 +9,17 @@ The sections below follow the order we recommend building in: boxes and platform
 wheel/motors/spouts, then the stimulus and recording systems, and finally the Bpod and Labcams
 software setup. Jump to any section directly via the table of contents.
 
+## Requirements
+
+> **TODO(you):** Fill in the actual prerequisites — this section is currently a placeholder.
+> - MATLAB version:
+> - Required MATLAB toolboxes:
+> - Operating system(s) tested:
+> - Any other software dependencies:
+
 ## Contents
 
+- [Requirements](#requirements)
 - [Boxes](#boxes)
   - [Touchshaker Box](#touchshaker-box)
   - [Breakout Box](#breakout-box)
@@ -57,6 +66,9 @@ connected via Ethernet cables.
 
 ![The boxes schematic and their connection](manual/images/fig01_boxes_overview.png)
 
+> **TODO(you):** A photo of the fully assembled setup (platform, wheel, both boxes, cameras) would
+> help builders know what they're aiming for before starting. Add one here if you have it.
+
 In order to prepare each box, follow these instructions:
 
 ### Touchshaker Box
@@ -73,6 +85,9 @@ In order to prepare each box, follow these instructions:
 
 After you assemble the box, put all components in the box. The box is then ready to be connected
 to the breakout box using Ethernet connections.
+
+> **TODO(you):** This section is thinner than Breakout Box below — it has no Tools or step-by-step
+> assembly. Add the tools list and build steps here if you'd like it at the same level of detail.
 
 ### Breakout Box
 
@@ -336,6 +351,10 @@ similar to:
 This is the pneumatic (air-puff) delivery system; see [Air-Puff Delivery](#air-puff-delivery)
 below for the stimulus parameters used in practice.
 
+> **Safety:** Compressed air systems can pressurize unexpectedly. Never point the outlet at
+> yourself, others, or an animal outside of a controlled stimulation, wear eye protection while
+> testing, and fully depressurize the system before disconnecting tubing.
+
 - Spouts
 - Spouts holder (3D design)
 - Bpod port interface
@@ -418,9 +437,10 @@ air puffs can be employed as aversive feedback during behavioral training.
 - Cables
 
 Two/one monitor(s) must be mounted in front of the wheel/platform. They only need to be connected
-to the PC and supplied with power. Visual stimuli are executed by external Python code (not
-included in this repository — some adjustments to that code may be needed so that the stimuli are
-executed correctly and on the correct screens).
+to the PC and supplied with power. Visual stimuli are executed by external Python code.
+
+> **TODO(you):** The Python code that drives visual stimuli isn't in this repository. Add it
+> under `software/`, or replace this note with a link to wherever it's maintained.
 
 ## Auditory stimuli system
 
@@ -479,6 +499,9 @@ For video recording in each experimental session, we use 2 cameras per setup. Si
 LEDs within the setup, we need to remove the IR filter of all cameras, in the following order:
 
 ### First step: IR filter removal
+
+> **Safety:** Hot air guns get hot enough to burn skin and damage nearby components. Keep the tip
+> moving, avoid prolonged contact with the PCB, and let the camera cool before handling it.
 
 Open the camera carefully. Usually, the CMOS (Complementary Metal-Oxide-Semiconductor) inside the
 camera is extremely sensitive. Use a hot air gun to loosen the glue used to fix the filter, remove
@@ -562,9 +585,10 @@ You are all set to run Bpod.
 
 ## Labcams installation
 
-> The installer files this section references (zipped `labcams-main` repository, the FLIR camera
-> driver `.whl`, the SpinnakerSDK installer, and a starter `default.json`) are not included in
-> this repository. Obtain the labcams source from
+> **TODO(you):** The installer files this section references (zipped `labcams-main` repository,
+> the FLIR camera driver `.whl`, the SpinnakerSDK installer, and a starter `default.json`) are not
+> included in this repository. Either add them somewhere in this repo and update the steps below
+> to point at them, or leave this as an external pointer — decide and remove this note. Sources:
 > [github.com/jcouto/labcams](https://github.com/jcouto/labcams) and the SpinnakerSDK/camera
 > driver from FLIR/Teledyne directly.
 
