@@ -1,0 +1,18 @@
+# IDE
+.idea/
+
+# MATLAB autosave backups
+*.asv
+
+# Machine-local Autopilot state (referenced by AutoPilot.mlapp, kept on disk, not tracked)
+software/autopilot/USBports.mat
+software/autopilot/app.hostname.mat
+
+# Machine-local Bpod hardware configuration
+software/bpod_local/settings/*.mat
+
+# Bpod runtime experiment data
+software/bpod_local/data/
+
+# KiCAD auto-backup archives
+*-backups/
