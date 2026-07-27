@@ -5,6 +5,10 @@ To find 3D designs and print them, see the [`hardware/`](../hardware) folder in 
 Our head-fixed setup is composed of different parts which are illustrated one by one in this
 manual. All files that you may need during preparation steps are included in this repository.
 
+The sections below follow the order we recommend building in: boxes and platform first, then the
+wheel/motors/spouts, then the stimulus and recording systems, and finally the Bpod and Labcams
+software setup. Jump to any section directly via the table of contents.
+
 ## Contents
 
 - [Boxes](#boxes)
@@ -28,7 +32,9 @@ manual. All files that you may need during preparation steps are included in thi
 - [Tactile stimuli system](#tactile-stimuli-system)
 - [Air-Puff Delivery](#air-puff-delivery)
 - [Visual stimuli system](#visual-stimuli-system)
+  - [Visual stimuli components](#visual-stimuli-components)
 - [Auditory stimuli system](#auditory-stimuli-system)
+  - [Auditory stimuli components](#auditory-stimuli-components)
 - [Water providing system](#water-providing-system)
 - [Camera and recording system](#camera-and-recording-system)
   - [First step: IR filter removal](#first-step-ir-filter-removal)
@@ -37,11 +43,12 @@ manual. All files that you may need during preparation steps are included in thi
   - [Fourth step: Mounting the IR LED](#fourth-step-mounting-the-ir-led)
   - [Optional step: Mounting the IR mirror](#optional-step-mounting-the-ir-mirror)
 - [Bpod system](#bpod-system)
+- [Running a session](#running-a-session)
 - [Labcams installation](#labcams-installation)
 
 ## Boxes
 
-In the proposed setup we designed two customized PCBs (Printed Circuit Boards):
+This setup uses two customized PCBs (Printed Circuit Boards):
 1. Touchshaker PCB (also referred to as the Spout controller PCB)
 2. Breakout PCB
 
@@ -162,8 +169,9 @@ The following pictures show the process and final result:
 **Second step: Preparing the breakout PCB section**
 
 There is a section on the breakout PCB related to the photo diode, to which you need to solder
-the components. The first component is a set of 10k resistors (see the breakout PCB image above
-for their location on the board).
+the components. The first component is a set of 10k resistors, in the positions marked below:
+
+![Breakout PCB with photo diode resistor positions](manual/images/breakout_pcb.png)
 
 There are three stereo sockets in the lid of the breakout box that are dedicated to the PDs.
 Solder the respective stereo pins of the plug to the emitter/collector holes in the PCB via a
@@ -192,6 +200,8 @@ In summary:
 
 ## Platform
 
+The platform is the base that everything else — boxes, wheel, spouts, cameras — mounts to.
+
 - Thorlabs platform
 - Thorlabs poles
 - Thorlabs base
@@ -201,6 +211,9 @@ platform. You may need to adjust their positions later to ensure that everything
 you get proper videos of your test subjects.
 
 ## Rotary encoder and wheel
+
+The wheel lets the animal run/walk during a session while the rotary encoder reports its motion
+to the Breakout Box.
 
 - Wheel (3D-print)
 - Wheel holder (3D print)
@@ -216,6 +229,8 @@ you get proper videos of your test subjects.
    box. (You need to prepare the rotary encoder cable with a male 4-pin jack.)
 
 ## Motors and Spouts
+
+Stepper motors position the spouts, and the spouts themselves double as lick sensors.
 
 - Stepper motors
 - Spouts
@@ -248,6 +263,9 @@ After checking all color codes, solder the free end to the PCB in this order (fr
 Green / Blue / Red.
 
 ### Spout preparing
+
+The finished spout assembly looks like this; the steps below cover wiring it for lick detection
+and zero-position sensing.
 
 ![Assembled spout](manual/images/fig09_spout_assembled.png)
 
@@ -314,6 +332,9 @@ similar to:
 ![Serial monitor signal with licks](manual/images/test_signal_with_licks.png)
 
 ## Tactile stimuli system
+
+This is the pneumatic (air-puff) delivery system; see [Air-Puff Delivery](#air-puff-delivery)
+below for the stimulus parameters used in practice.
 
 - Spouts
 - Spouts holder (3D design)
@@ -390,7 +411,8 @@ air puffs can be employed as aversive feedback during behavioral training.
 
 ## Visual stimuli system
 
-**List of components**
+### Visual stimuli components
+
 - Monitor
 - Monitor holder (3D design)
 - Cables
@@ -402,7 +424,8 @@ executed correctly and on the correct screens).
 
 ## Auditory stimuli system
 
-**List of components**
+### Auditory stimuli components
+
 - Stereo speakers
 - BNC sockets
 - BNC cables
@@ -422,6 +445,9 @@ sockets to a stereo socket as illustrated below:
 
 ## Water providing system
 
+The water system delivers reward through the spouts, gravity-fed from a syringe via a three-way
+valve and Bpod-controlled valves.
+
 - Tubes
 - Syringe
 - Syringe holder (3D design)
@@ -429,7 +455,7 @@ sockets to a stereo socket as illustrated below:
 - Valves
 - T-connector
 
-Steps:
+Assemble the system as follows:
 1. Attach the Bpod port interfaces with the valves to the T-shaped part of the syringe holder with
    glue.
 2. Attach the three-way valve to the syringe and insert it into the holder.
@@ -518,6 +544,21 @@ After connecting all the components, set up Bpod on your PC using MATLAB:
 3. Run `Bpod()` at the MATLAB command prompt.
 
 You are all set to run Bpod.
+
+## Running a session
+
+1. Start MATLAB and enter `bpod` at the command prompt — this opens the Bpod GUI.
+2. Flush the spouts, then press **Start** once flushing is done. (Flush calibration only needs to
+   be redone occasionally.)
+3. Choose your paradigm/protocol, and set the subject and session settings.
+   > This repository doesn't include any protocols. See
+   > [PuffyPenguin](https://github.com/musallGroup/PuffyPenguin) for an example multisensory
+   > paradigm, or supply your own via Bpod's `Protocols` folder.
+4. Adjust the spout positions, then press **Give Water** to confirm reward delivery.
+5. Place the animal into the setup and head-fix it.
+6. Adjust the lick detection threshold if needed.
+7. Toggle the run/pause button (top left of the Bpod GUI) from pause to run to start the session.
+8. Press **Stop** once the experiment is done.
 
 ## Labcams installation
 
