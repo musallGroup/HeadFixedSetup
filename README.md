@@ -6,7 +6,7 @@ Operant conditioning is essential for quantifying animal perception. We develope
 
 # Repository structure
 ```
-docs/         Manual and wiring reference
+docs/         MANUAL.md and wiring reference
 software/     MATLAB: Autopilot GUI/scale reading, UDP client/server, local Bpod config
 firmware/     Arduino/Teensy firmware for the touchshaker and RFID/weighing scale
               (firmware/openscale vendors SparkFun's OpenScale firmware)
@@ -21,7 +21,7 @@ git submodule update --init --recursive
 ```
 
 # Installation
-Please refer to the manual for detailed installation steps.
+Please refer to the [manual](docs/MANUAL.md) for detailed installation steps.
 
 
 ![Connections](https://github.com/user-attachments/assets/48c63050-7954-4c85-bdbc-ce866a0ca438)
